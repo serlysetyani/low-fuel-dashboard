@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Low Fuel Monitoring Dashboard — Site Detail</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  body { margin: 0; background: #0A0A12; }
+  * { box-sizing: border-box; }
+  .dt a { color: #22D3EE; text-decoration: none; }
+  .dt a:hover { color: #67E8F9; }
+  .dt table { border-collapse: collapse; width: 100%; }
+  .dt th { text-align: left; font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 600; padding: 0 12px 10px 0; border-bottom: 1px solid #262637; }
+  .dt td { padding: 11px 12px 11px 0; border-bottom: 1px solid #1C1C2A; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: #D6D6E4; vertical-align: top; }
+</style>
+</head>
+<body>
+<div class="dt" style="width: 100%; max-width: 1440px; margin: 0 auto; min-height: 100vh; background: #0A0A12; font-family: 'Manrope', sans-serif; color: #E7E7F0; padding: 32px clamp(16px, 4vw, 48px) 64px;">
+
+  <!-- Top bar -->
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid #1C1C2A;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <img src="logo-icon.png" alt="" width="34" height="34" style="border-radius: 9px; object-fit: cover;">
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.01em;">Low Fuel Monitoring Dashboard</div>
+    </div>
+    <div style="text-align: right; font-size: 12px; color: #9494AC;">
+      <div>Calculated at</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; color: #B4B4C8; margin-top: 2px;">22 Sep 2026, 03:32:33 WIB</div>
+    </div>
+  </div>
+
+  <!-- Page title -->
+  <div style="padding: 26px 0 22px 0; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+    <div>
+      <a href="index.html" style="font-size: 12.5px; color: #9494AC; display: inline-flex; align-items: center; gap: 6px;">← Back to fleet overview</a>
+      <div style="display: flex; align-items: center; gap: 14px; margin-top: 10px;">
+        <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: 'IBM Plex Mono', monospace;">13SUB0142</div>
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; color: #9494AC;">KASOMALANG_EP</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; background: #1C1013; border: 1px solid #3A1C22; padding: 10px 18px; border-radius: 12px;">
+      <div style="width: 8px; height: 8px; border-radius: 999px; background: #FB7185;"></div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: #FB7185; letter-spacing: 0.02em;">LOW FUEL — REFILL RECOMMENDED</div>
+    </div>
+  </div>
+
+  <!-- KPI strip -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
+      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Est. Remaining Runtime</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F59E0B; margin-top: 10px;">15.3 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">Hours</span></div>
+      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">About 0.6 days left, running as usual</div>
+    </div>
+    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
+      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Est. Remaining Fuel</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F59E0B; margin-top: 10px;">55.2 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">Liter</span></div>
+      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">13.8% of the 400 L tank</div>
+    </div>
+    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
+      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Consumption Rate</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F1F1F6; margin-top: 10px;">3.6 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">L / Hour</span></div>
+      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">Fuel this genset burns per hour</div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-top: 20px;">
+
+      <!-- Site info -->
+      <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 22px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 16px;">Site &amp; Genset Information</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site ID</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">13SUB0142</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site Name</span><span style="font-weight: 600;">KASOMALANG_EP</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Region</span><span style="font-weight: 600;">West Java</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Circle</span><span style="font-weight: 600;">Jaya</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Hub Type</span><span style="font-weight: 600;">Medium Hub Site</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Genset Brand / Engine</span><span style="font-weight: 600;">Deutz F3M2011</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Generator Size</span><span style="font-weight: 600;">20.0 kVA</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Tank Size</span><span style="font-weight: 600;">400 Liter</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Last Maintenance Visit</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">19 May 2026</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Last Refuel Date</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">21 Mar 2025</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site Technician</span><span style="font-weight: 600;">Erick Rikardo</span></div>
+        </div>
+      </div>
+
+      <!-- Fuel gauge -->
+      <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 22px;">
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600;">Fuel Level Prediction</div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <svg width="240" height="240" viewBox="0 0 240 240" style="margin-top: 6px; max-width: 100%; height: auto;">
+            <circle cx="120" cy="120" r="98" fill="none" stroke="#1C1C2A" stroke-width="20"></circle>
+            <circle cx="120" cy="120" r="98" fill="none" stroke="#F59E0B" stroke-width="20" stroke-linecap="round" stroke-dasharray="85 530.8" transform="rotate(-90 120 120)"></circle>
+            <text x="120" y="112" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="40" font-weight="700" fill="#F1F1F6">13.8%</text>
+            <text x="120" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="15" fill="#8B8BA3">55.2 of 400 L</text>
+          </svg>
+          <div style="margin-top: 18px; background: #1C1013; border: 1px solid #3A1C22; color: #FB7185; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 999px;">BELOW 60 L THRESHOLD</div>
+        </div>
+
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #1C1C2A;">
+          <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 12px;">Genset Runtime</div>
+          <div style="overflow-x: auto;">
+          <table class="dt" style="min-width: 300px;">
+            <thead>
+              <tr>
+                <th>Alarm Type</th>
+                <th style="text-align: right;">Duration (Hr)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="display: flex; align-items: center; gap: 8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#565670" stroke-width="2.5" style="flex-shrink: 0;"><path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path></svg> Genset Running Alarm</td>
+                <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; border-bottom: none;">0.00</td>
+              </tr>
+              <tr>
+                <td style="display: flex; align-items: center; gap: 8px; border-bottom: none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" style="flex-shrink: 0;"><path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path></svg> Mains Failure Alarm</td>
+                <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; border-bottom: none;">26.32</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+</body>
+</html>
