@@ -1,416 +1,2242 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Low Fuel Monitoring Dashboard — Overview</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<style>
-  body { margin: 0; background: #0A0A12; }
-  * { box-sizing: border-box; }
-  .ov a { color: #22D3EE; text-decoration: none; }
-  .ov a:hover { color: #67E8F9; }
-  .ov table { border-collapse: collapse; width: 100%; }
-  .ov th { text-align: left; font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 600; padding: 0 14px 12px 14px; border-bottom: 1px solid #262637; }
-  .ov td { padding: 14px; border-bottom: 1px solid #1C1C2A; font-family: 'Manrope', sans-serif; font-size: 13px; color: #D6D6E4; vertical-align: middle; }
-</style>
-</head>
-<body>
-<div class="ov" style="width: 100%; max-width: 1440px; margin: 0 auto; min-height: 100vh; background: #0A0A12; font-family: 'Manrope', sans-serif; color: #E7E7F0; padding: 32px clamp(16px, 4vw, 48px) 64px;">
-
-  <!-- Top bar -->
-  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid #1C1C2A;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <img src="logo-icon.png" alt="" width="34" height="34" style="border-radius: 9px; object-fit: cover;">
-      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.01em;">Low Fuel Monitoring Dashboard</div>
-    </div>
-    <div style="text-align: right; font-size: 12px; color: #9494AC;">
-      <div>Last sync</div>
-      <div style="font-family: 'IBM Plex Mono', monospace; color: #B4B4C8; margin-top: 2px;">22 Sep 2026, 03:32 WIB</div>
-    </div>
-  </div>
-
-  <!-- Page title -->
-  <div style="padding: 28px 0 24px 0;">
-    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.01em;">Fleet Overview</div>
-    <div style="font-size: 14px; color: #8B8BA3; margin-top: 6px; max-width: 720px;">See which sites are running low on fuel and how long their backup power will last.</div>
-  </div>
-
-  <!-- KPI row -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
-
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Total Sites</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F1F1F6; margin-top: 10px;">2,873</div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">Monitored genset sites</div>
-    </div>
-
-    <div style="background: #1C1013; border: 1px solid #3A1C22; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #E39BAA; font-weight: 700;">Low Fuel Alert</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #FB7185; margin-top: 10px;">915</div>
-      <div style="font-size: 12px; color: #B98A93; margin-top: 6px;">31.9% of fleet</div>
-    </div>
-
-    <div style="background: #1A0F0F; border: 1px solid #3D1E1E; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #F09B9B; font-weight: 700;">Predicted Depleted</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F43F5E; margin-top: 10px;">466</div>
-      <div style="font-size: 12px; color: #B98A93; margin-top: 6px;">Fuel likely already ran out</div>
-    </div>
-
-    <div style="background: #0F1A14; border: 1px solid #1E3D2A; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #86D9A6; font-weight: 700;">Normal</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #22C55E; margin-top: 10px;">1,908</div>
-      <div style="font-size: 12px; color: #7FA68F; margin-top: 6px;">66.4% of fleet</div>
-    </div>
-
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">No Baseline</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #8B8BA3; margin-top: 10px;">50</div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">Missing maintenance or refuel history</div>
-    </div>
-
-  </div>
-
-  <!-- Chart grid -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 16px; margin-top: 20px;">
-
-    <!-- Backup Time -->
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 24px;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;">Backup Time (Predicted)</div>
-        <div style="font-size: 12px; color: #9494AC;">2,700 sites with data</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Low Fuel Monitoring Dashboard — Overview</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    />
+    <style>
+      body {
+        margin: 0;
+        background: #0a0a12;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .ov a {
+        color: #22d3ee;
+        text-decoration: none;
+      }
+      .ov a:hover {
+        color: #67e8f9;
+      }
+      .ov table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .ov th {
+        text-align: left;
+        font-family: "Manrope", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #9494ac;
+        font-weight: 600;
+        padding: 16px 14px 12px 14px;
+        border-bottom: 1px solid #262637;
+        white-space: nowrap;
+      }
+      .ov td {
+        padding: 14px;
+        border-bottom: 1px solid #1c1c2a;
+        font-family: "Manrope", sans-serif;
+        font-size: 13px;
+        color: #d6d6e4;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+      .ov tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .ov select {
+        -webkit-appearance: none;
+        appearance: none;
+        padding-right: 32px !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239494AC' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        cursor: pointer;
+      }
+      .ov button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 1;
+      }
+      .pie-card {
+        background: #12121c;
+        border: 1px solid #262637;
+        border-radius: 14px;
+        padding: 24px;
+      }
+      .pie-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      #pie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .pie-body {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .pie-chart {
+        position: relative;
+        width: 136px;
+        height: 136px;
+        flex-shrink: 0;
+      }
+      .pie-chart svg {
+        display: block;
+      }
+      .pie-chart path {
+        stroke: #12121c;
+        stroke-width: 2;
+        transition: opacity 0.15s;
+      }
+      .pie-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .pie-total {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #f1f1f6;
+      }
+      .pie-sub {
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #7d7d98;
+        margin-top: 2px;
+      }
+      .pie-legend {
+        flex-grow: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pie-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: #d6d6e4;
+        border-radius: 6px;
+        transition: opacity 0.15s;
+      }
+      .pie-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+      .pie-name {
+        flex-grow: 1;
+      }
+      .pie-val {
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 600;
+        color: #e7e7f0;
+        text-align: right;
+      }
+      .pie-pct {
+        width: 48px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: #7d7d98;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .pie-card.is-hover path:not(.is-active),
+      .pie-card.is-hover .pie-row:not(.is-active) {
+        opacity: 0.35;
+      }
+      #pie-tip {
+        position: fixed;
+        z-index: 10;
+        pointer-events: none;
+        background: #1c1c2a;
+        border: 1px solid #2c2c42;
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 12px;
+        color: #d6d6e4;
+        white-space: nowrap;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        display: none;
+      }
+      #pie-tip b {
+        color: #f1f1f6;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .seg {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 2px;
+        padding: 3px;
+        background: #12121c;
+        border: 1px solid #262637;
+        border-radius: 10px;
+      }
+      .seg button {
+        height: 30px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 7px;
+        background: transparent;
+        color: #9494ac;
+        font-family: "Manrope", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .seg button:hover {
+        color: #e7e7f0;
+      }
+      .seg button.is-on {
+        background: #22d3ee;
+        color: #0a0a12;
+        font-weight: 700;
+      }
+      .pie-row,
+      .pie-chart path {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="ov"
+      style="
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        min-height: 100vh;
+        background: #0a0a12;
+        font-family: &quot;Manrope&quot;, sans-serif;
+        color: #e7e7f0;
+        padding: 32px clamp(16px, 4vw, 48px) 64px;
+      "
+    >
+      <!-- Top bar -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 12px;
+          padding-bottom: 24px;
+          border-bottom: 1px solid #1c1c2a;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 12px">
+          <img
+            src="logo-icon.png"
+            alt=""
+            width="34"
+            height="34"
+            style="border-radius: 9px; object-fit: cover"
+          />
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-weight: 700;
+              font-size: 17px;
+              letter-spacing: 0.01em;
+            "
+          >
+            Low Fuel Monitoring Dashboard
+          </div>
+        </div>
+        <div style="text-align: right; font-size: 12px; color: #9494ac">
+          <div>Last Update</div>
+          <div
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              color: #b4b4c8;
+              margin-top: 2px;
+            "
+          >
+            22 Sep 2026, 03:32 WIB
+          </div>
+        </div>
       </div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 2px; margin-bottom: 22px;">How long backup power will last, based on the fuel left right now</div>
 
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Below 24 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 100%; height: 100%; background: #F43F5E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F43F5E;">836</div>
+      <!-- Page title -->
+      <div
+        style="
+          padding: 28px 0 24px 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 12px;
+        "
+      >
+        <div
+          style="
+            font-family: &quot;Space Grotesk&quot;, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+          "
+        >
+          Fleet Overview
         </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">24 – 48 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 67%; height: 100%; background: #F59E0B; border-radius: 8px;"></div>
+        <div style="display: flex; align-items: center; gap: 10px">
+          <span
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Circle</span
+          >
+          <div class="seg" id="circle-filter" role="group" aria-label="Filter by circle">
+            <button type="button" class="is-on" data-circle="">All</button>
+            <button type="button" data-circle="0">JAVA</button>
+            <button type="button" data-circle="1">JAYA</button>
+            <button type="button" data-circle="2">KSMP</button>
+            <button type="button" data-circle="3">SMTR</button>
           </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F59E0B;">564</div>
         </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">48 – 72 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 63%; height: 100%; background: #EAB308; border-radius: 8px;"></div>
+      </div>
+
+      <!-- KPI row -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 20px;
+        "
+      >
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            Total Sites
           </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #EAB308;">530</div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #f1f1f6;
+              margin-top: 10px;
+            "
+          >
+            <span id="kpi-total">2,873</span>
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            <span id="kpi-total-sub">Monitored genset sites</span>
+          </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Above 72 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 92%; height: 100%; background: #22C55E; border-radius: 8px;"></div>
+
+        <div
+          style="
+            background: #1c1013;
+            border: 1px solid #3a1c22;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #e39baa;
+              font-weight: 700;
+            "
+          >
+            Low Fuel Alert
           </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #22C55E;">770</div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #fb7185;
+              margin-top: 10px;
+            "
+          >
+            <span id="kpi-low">915</span>
+          </div>
+          <div style="font-size: 12px; color: #b98a93; margin-top: 6px">
+            <span id="kpi-low-sub">31.9% of fleet</span>
+          </div>
+        </div>
+
+        <div
+          style="
+            background: #0f1a14;
+            border: 1px solid #1e3d2a;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #86d9a6;
+              font-weight: 700;
+            "
+          >
+            Normal
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #22c55e;
+              margin-top: 10px;
+            "
+          >
+            <span id="kpi-normal">1,908</span>
+          </div>
+          <div style="font-size: 12px; color: #7fa68f; margin-top: 6px">
+            <span id="kpi-normal-sub">66.4% of fleet</span>
+          </div>
+        </div>
+
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            No Baseline
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #8b8ba3;
+              margin-top: 10px;
+            "
+          >
+            <span id="kpi-nb">50</span>
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            Missing maintenance or refuel history
+          </div>
+        </div>
+      </div>
+
+      <!-- Status by circle -->
+      <div id="pie-grid"></div>
+      <div id="pie-tip"></div>
+
+      <!-- Chart grid -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(340px, 100%), 1fr)
+          );
+          gap: 20px;
+          margin-top: 20px;
+        "
+      >
+        <!-- Backup Time -->
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 24px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: baseline;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+              "
+            >
+              Backup Time (Predicted)
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                Below 24 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: #f43f5e;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f43f5e;
+                "
+              >
+                836
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                24 – 48 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 67%;
+                    height: 100%;
+                    background: #f59e0b;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f59e0b;
+                "
+              >
+                564
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                48 – 72 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 63%;
+                    height: 100%;
+                    background: #eab308;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #eab308;
+                "
+              >
+                530
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                Above 72 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 92%;
+                    height: 100%;
+                    background: #22c55e;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #22c55e;
+                "
+              >
+                770
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remaining Fuel -->
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 24px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: baseline;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+              "
+            >
+              Remaining Fuel (Prediction)
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                Depleted (&lt; 0 L)
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 40%;
+                    height: 100%;
+                    background: #f43f5e;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f43f5e;
+                "
+              >
+                466
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                0 – 100 liter
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 37%;
+                    height: 100%;
+                    background: #fb923c;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #fb923c;
+                "
+              >
+                433
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                100 – 300 liter
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: #f59e0b;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f59e0b;
+                "
+              >
+                1,177
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                Above 300 liter
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 63%;
+                    height: 100%;
+                    background: #22c55e;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #22c55e;
+                "
+              >
+                740
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aging Genset Running Hour -->
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 24px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: baseline;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+              "
+            >
+              Aging Genset Running Hour
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                4 – 8 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 33%;
+                    height: 100%;
+                    background: #f59e0b;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f59e0b;
+                "
+              >
+                264
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                8 – 12 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 21%;
+                    height: 100%;
+                    background: #fb923c;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #fb923c;
+                "
+              >
+                168
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <div
+                style="
+                  width: 118px;
+                  flex-shrink: 0;
+                  font-size: 13px;
+                  color: #d6d6e4;
+                "
+              >
+                Above 12 hour
+              </div>
+              <div
+                style="
+                  flex-grow: 1;
+                  min-width: 0;
+                  height: 16px;
+                  background: #1c1c2a;
+                  border-radius: 8px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: #f43f5e;
+                    border-radius: 8px;
+                  "
+                ></div>
+              </div>
+              <div
+                style="
+                  width: 60px;
+                  flex-shrink: 0;
+                  text-align: right;
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 13px;
+                  font-weight: 600;
+                  color: #f43f5e;
+                "
+              >
+                811
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div
+        style="
+          background: #12121c;
+          border: 1px solid #262637;
+          border-radius: 14px;
+          padding: 18px 24px;
+          margin-top: 20px;
+          display: flex;
+          align-items: flex-end;
+          gap: 14px;
+          flex-wrap: wrap;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label
+            for="f-circle"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Circle</label
+          >
+          <select
+            id="f-circle"
+            style="
+              width: 150px;
+              height: 38px;
+              padding: 0 12px;
+              background: #1c1c2a;
+              border: 1px solid #2c2c42;
+              border-radius: 8px;
+              color: #e7e7f0;
+              font-family: &quot;Manrope&quot;, sans-serif;
+              font-size: 13px;
+            "
+          >
+            <option>All Circles</option>
+            <option>JAVA</option>
+            <option>JAYA</option>
+            <option>KALISUMAPA</option>
+            <option>SUMATERA</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label
+            for="f-region"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Region</label
+          >
+          <select
+            id="f-region"
+            style="
+              width: 166px;
+              height: 38px;
+              padding: 0 12px;
+              background: #1c1c2a;
+              border: 1px solid #2c2c42;
+              border-radius: 8px;
+              color: #e7e7f0;
+              font-family: &quot;Manrope&quot;, sans-serif;
+              font-size: 13px;
+            "
+          >
+            <option>All Regions</option>
+            <option>CENTRAL SUMATERA</option>
+            <option>BALI NUSRA</option>
+            <option>INNER JAKARTA</option>
+            <option>CENTRAL JAVA</option>
+            <option>SULAWESI</option>
+            <option>KALIMANTAN</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label
+            for="f-rts"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >RTS</label
+          >
+          <select
+            id="f-rts"
+            style="
+              width: 166px;
+              height: 38px;
+              padding: 0 12px;
+              background: #1c1c2a;
+              border: 1px solid #2c2c42;
+              border-radius: 8px;
+              color: #e7e7f0;
+              font-family: &quot;Manrope&quot;, sans-serif;
+              font-size: 13px;
+            "
+          >
+            <option>All RTS (97)</option>
+            <option>Erick Rikardo</option>
+            <option>Irwan Seftian</option>
+            <option>Agung Arbiyanto</option>
+            <option>Abdul Gazali</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label
+            for="f-status"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Fuel Status</label
+          >
+          <select
+            id="f-status"
+            style="
+              width: 150px;
+              height: 38px;
+              padding: 0 12px;
+              background: #1c1c2a;
+              border: 1px solid #2c2c42;
+              border-radius: 8px;
+              color: #e7e7f0;
+              font-family: &quot;Manrope&quot;, sans-serif;
+              font-size: 13px;
+            "
+          >
+            <option>All Status</option>
+            <option>Low Fuel</option>
+            <option>Normal</option>
+            <option>No Baseline</option>
+          </select>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+            min-width: 220px;
+          "
+        >
+          <label
+            for="f-search"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Search Site ID</label
+          >
+          <div style="position: relative">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9494AC"
+              stroke-width="2"
+              style="
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+              "
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              id="f-search"
+              type="text"
+              placeholder="e.g. 13SUB0142"
+              style="
+                width: 100%;
+                height: 38px;
+                padding: 0 12px 0 34px;
+                background: #1c1c2a;
+                border: 1px solid #2c2c42;
+                border-radius: 8px;
+                color: #e7e7f0;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+              "
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          style="
+            height: 38px;
+            padding: 0 18px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid #2c2c42;
+            color: #b4b4c8;
+            font-family: &quot;Manrope&quot;, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+          "
+        >
+          Reset
+        </button>
+
+        <button
+          type="button"
+          style="
+            height: 38px;
+            padding: 0 18px;
+            border-radius: 8px;
+            background: #ffffff;
+            border: none;
+            color: #0a0a12;
+            font-family: &quot;Manrope&quot;, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          "
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#0A0A12"
+            stroke-width="2.5"
+          >
+            <path d="M12 3v12"></path>
+            <path d="M7 10l5 5 5-5"></path>
+            <path d="M5 21h14"></path>
+          </svg>
+          Export Data
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div
+        style="
+          background: #12121c;
+          border: 1px solid #262637;
+          border-radius: 14px;
+          margin-top: 20px;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="padding: 22px 24px 18px 24px; border-bottom: 1px solid #1c1c2a"
+        >
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+            "
+          >
+            Low Fuel Query
+          </div>
+        </div>
+
+        <div style="overflow-x: auto">
+          <table style="min-width: 900px">
+            <thead>
+              <tr>
+                <th style="padding-left: 24px">Site ID</th>
+                <th>Site Name</th>
+                <th>Region</th>
+                <th style="text-align: right">Running (Hrs)</th>
+                <th style="text-align: right">Fuel Used (L)</th>
+                <th style="text-align: right">Remaining (L)</th>
+                <th style="text-align: right">Backup (Hrs)</th>
+                <th style="padding-right: 24px">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">04PKR0038</a>
+                </td>
+                <td>ASIAN_AGRI_EP</td>
+                <td style="color: #8b8ba3">CENTRAL SUMATERA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  195.9
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  705.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −705.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −195.9
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">19KPG0018</a>
+                </td>
+                <td>OEBOBO_EP</td>
+                <td style="color: #8b8ba3">BALI NUSRA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  236.9
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  1,708.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −1,358.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −188.4
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">13KRW0413</a>
+                </td>
+                <td>KALIHURIP_EP</td>
+                <td style="color: #8b8ba3">INNER JAKARTA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  262.3
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  944.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −644.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −179.0
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">14KND0052</a>
+                </td>
+                <td>SINGOROJO_MT</td>
+                <td style="color: #8b8ba3">CENTRAL JAVA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  214.9
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  969.0
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −769.0
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −170.5
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">30KLU0007</a>
+                </td>
+                <td>VS_LAPAI_EP</td>
+                <td style="color: #8b8ba3">SULAWESI</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  211.7
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  762.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −612.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −170.1
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">22SAA0009</a>
+                </td>
+                <td>BATU_TIMBAU_MT</td>
+                <td style="color: #8b8ba3">KALIMANTAN</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  373.3
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  1,818.1
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −818.1
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −168.0
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">14SLW0140</a>
+                </td>
+                <td>KEMANTRAN_EP</td>
+                <td style="color: #8b8ba3">CENTRAL JAVA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  203.6
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  732.9
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  −602.9
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                    font-weight: 600;
+                  "
+                >
+                  −167.5
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="
+                    padding-left: 24px;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <a href="detail.html">13SUB0142</a>
+                </td>
+                <td>KASOMALANG_EP</td>
+                <td style="color: #8b8ba3">WEST JAVA</td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  26.3
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  94.8
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f59e0b;
+                  "
+                >
+                  55.2
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f59e0b;
+                    font-weight: 600;
+                  "
+                >
+                  15.3
+                </td>
+                <td style="padding-right: 24px">
+                  <span
+                    style="
+                      background: #1c1013;
+                      color: #fb7185;
+                      border: 1px solid #3a1c22;
+                      padding: 4px 10px;
+                      border-radius: 999px;
+                      font-size: 11.5px;
+                      font-weight: 600;
+                      display: inline-block;
+                      white-space: nowrap;
+                    "
+                    >LOW FUEL</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          style="
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-top: 1px solid #1c1c2a;
+          "
+        >
+          <div style="font-size: 12px; color: #7d7d98">
+            Showing 1–8 of 578 ranked sites
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              flex-wrap: wrap;
+            "
+          >
+            <button
+              type="button"
+              disabled
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+                background: #12121c;
+                border: 1px solid #262637;
+                color: #3a3a4e;
+                font-family: &quot;Manrope&quot;, sans-serif;
+                font-size: 14px;
+                cursor: not-allowed;
+              "
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              style="
+                min-width: 32px;
+                height: 32px;
+                padding: 0 6px;
+                border-radius: 8px;
+                background: #22d3ee;
+                border: 1px solid #22d3ee;
+                color: #0a0a12;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                font-weight: 700;
+                cursor: pointer;
+              "
+            >
+              1
+            </button>
+            <button
+              type="button"
+              style="
+                min-width: 32px;
+                height: 32px;
+                padding: 0 6px;
+                border-radius: 8px;
+                background: #1c1c2a;
+                border: 1px solid #262637;
+                color: #b4b4c8;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+              "
+            >
+              2
+            </button>
+            <button
+              type="button"
+              style="
+                min-width: 32px;
+                height: 32px;
+                padding: 0 6px;
+                border-radius: 8px;
+                background: #1c1c2a;
+                border: 1px solid #262637;
+                color: #b4b4c8;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+              "
+            >
+              3
+            </button>
+            <div
+              style="
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #7d7d98;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+              "
+            >
+              …
+            </div>
+            <button
+              type="button"
+              style="
+                min-width: 32px;
+                height: 32px;
+                padding: 0 6px;
+                border-radius: 8px;
+                background: #1c1c2a;
+                border: 1px solid #262637;
+                color: #b4b4c8;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+              "
+            >
+              73
+            </button>
+            <button
+              type="button"
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+                background: #1c1c2a;
+                border: 1px solid #262637;
+                color: #d6d6e4;
+                font-family: &quot;Manrope&quot;, sans-serif;
+                font-size: 14px;
+                cursor: pointer;
+              "
+            >
+              ›
+            </button>
+            <div
+              style="
+                width: 1px;
+                height: 20px;
+                background: #262637;
+                margin: 0 6px;
+              "
+            ></div>
+          </div>
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+        // Circle order is fixed so each circle keeps its color across charts
+        var circles = [
+          { name: "JAVA", color: "#3987e5" },
+          { name: "JAYA", color: "#d95926" },
+          { name: "KSMP", color: "#199e70" },
+          { name: "SMTR", color: "#c98500" },
+        ];
+        var charts = [
+          { title: "Low Fuel Alert by Circle", values: [312, 186, 241, 176] },
+          { title: "Normal by Circle", values: [642, 418, 471, 377] },
+          { title: "No Baseline by Circle", values: [17, 9, 14, 10] },
+        ];
+        var R = 68,
+          r = 44,
+          C = 68;
+        var selected = null; // index into circles, null = all
+        var cards = [];
+        var tip = document.getElementById("pie-tip");
+        var grid = document.getElementById("pie-grid");
 
-    <!-- Aging Genset Running Hour -->
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 24px;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;">Aging Genset Running Hour</div>
-        <div style="font-size: 12px; color: #9494AC;">1,243 sites with activity</div>
-      </div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 2px; margin-bottom: 22px;">Hours the backup genset has run since the last refuel</div>
+        function pt(rad, a) {
+          return [C + rad * Math.sin(a), C - rad * Math.cos(a)];
+        }
+        function arc(a0, a1) {
+          var large = a1 - a0 > Math.PI ? 1 : 0;
+          var p0 = pt(R, a0),
+            p1 = pt(R, a1),
+            p2 = pt(r, a1),
+            p3 = pt(r, a0);
+          return (
+            "M" +
+            p0 +
+            "A" +
+            R +
+            "," +
+            R +
+            " 0 " +
+            large +
+            " 1 " +
+            p1 +
+            "L" +
+            p2 +
+            "A" +
+            r +
+            "," +
+            r +
+            " 0 " +
+            large +
+            " 0 " +
+            p3 +
+            "Z"
+          );
+        }
+        function fmt(n) {
+          return n.toLocaleString("en-US");
+        }
 
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">4 – 8 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 33%; height: 100%; background: #F59E0B; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F59E0B;">264</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">8 – 12 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 21%; height: 100%; background: #FB923C; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #FB923C;">168</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Above 12 hour</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 100%; height: 100%; background: #F43F5E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F43F5E;">811</div>
-        </div>
-      </div>
-      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #1C1C2A; font-size: 11.5px; color: #7D7D98;">1,630 more sites ran under 4 hours (not shown)</div>
-    </div>
+        charts.forEach(function (chart) {
+          var total = chart.values.reduce(function (a, b) {
+            return a + b;
+          }, 0);
+          var card = document.createElement("div");
+          card.className = "pie-card";
+          var paths = "",
+            rows = "",
+            a = 0;
+          chart.values.forEach(function (v, i) {
+            var a1 = a + (v / total) * Math.PI * 2;
+            var pct = ((v / total) * 100).toFixed(1) + "%";
+            paths +=
+              '<path data-i="' +
+              i +
+              '" d="' +
+              arc(a, a1) +
+              '" fill="' +
+              circles[i].color +
+              '"></path>';
+            rows +=
+              '<div class="pie-row" data-i="' +
+              i +
+              '">' +
+              '<span class="pie-swatch" style="background:' +
+              circles[i].color +
+              '"></span>' +
+              '<span class="pie-name">' +
+              circles[i].name +
+              "</span>" +
+              '<span class="pie-val">' +
+              fmt(v) +
+              "</span>" +
+              '<span class="pie-pct">' +
+              pct +
+              "</span></div>";
+            a = a1;
+          });
+          card.innerHTML =
+            '<div class="pie-title">' +
+            chart.title +
+            "</div>" +
+            '<div class="pie-body"><div class="pie-chart">' +
+            '<svg width="136" height="136" viewBox="0 0 136 136" role="img" aria-label="' +
+            chart.title +
+            '">' +
+            paths +
+            "</svg>" +
+            '<div class="pie-center"><div class="pie-total">' +
+            fmt(total) +
+            '</div><div class="pie-sub">Sites</div></div>' +
+            '</div><div class="pie-legend">' +
+            rows +
+            "</div></div>";
+          grid.appendChild(card);
+          var centerVal = card.querySelector(".pie-total");
+          var centerSub = card.querySelector(".pie-sub");
 
-    <!-- Aging Fuel Usage -->
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 24px;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;">Aging Fuel Usage (Prediction)</div>
-        <div style="font-size: 12px; color: #9494AC;">2,349 sites with usage</div>
-      </div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 2px; margin-bottom: 22px;">Estimated fuel burned, based on how long the genset has run</div>
+          // Hover wins; otherwise fall back to the circle filter
+          function setActive(i) {
+            if (i === null) i = selected;
+            card.classList.toggle("is-hover", i !== null);
+            centerVal.textContent = fmt(i === null ? total : chart.values[i]);
+            centerSub.textContent = i === null ? "Sites" : circles[i].name;
+            card.querySelectorAll("[data-i]").forEach(function (el) {
+              el.classList.toggle(
+                "is-active",
+                el.getAttribute("data-i") === String(i),
+              );
+            });
+          }
+          card.querySelectorAll("[data-i]").forEach(function (el) {
+            var i = +el.getAttribute("data-i");
+            el.addEventListener("mouseenter", function () {
+              setActive(i);
+              var v = chart.values[i];
+              tip.innerHTML =
+                circles[i].name +
+                " &middot; <b>" +
+                fmt(v) +
+                "</b> sites (" +
+                ((v / total) * 100).toFixed(1) +
+                "%)";
+              tip.style.display = "block";
+            });
+            el.addEventListener("mousemove", function (e) {
+              tip.style.left = e.clientX + 12 + "px";
+              tip.style.top = e.clientY + 12 + "px";
+            });
+            el.addEventListener("mouseleave", function () {
+              setActive(null);
+              tip.style.display = "none";
+            });
+            el.addEventListener("click", function () {
+              applyFilter(selected === i ? null : i);
+            });
+          });
+          cards.push(setActive);
+        });
 
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">≤ 50 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 100%; height: 100%; background: #22C55E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #22C55E;">1,526</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">50 – 100 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 15%; height: 100%; background: #F59E0B; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F59E0B;">225</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Above 100 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 39%; height: 100%; background: #F43F5E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F43F5E;">598</div>
-        </div>
-      </div>
-      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #1C1C2A; font-size: 11.5px; color: #7D7D98;">524 sites show no recent fuel use</div>
-    </div>
-
-    <!-- Remaining Fuel -->
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 24px;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;">Remaining Fuel (Prediction)</div>
-        <div style="font-size: 12px; color: #9494AC;">2,816 sites with data</div>
-      </div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 2px; margin-bottom: 22px;">Estimated fuel left in the tank right now</div>
-
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Depleted (&lt; 0 L)</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 40%; height: 100%; background: #F43F5E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F43F5E;">466</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">0 – 100 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 37%; height: 100%; background: #FB923C; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #FB923C;">433</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">100 – 300 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 100%; height: 100%; background: #F59E0B; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #F59E0B;">1,177</div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 118px; font-size: 13px; color: #D6D6E4;">Above 300 liter</div>
-          <div style="flex-grow: 1; height: 16px; background: #1C1C2A; border-radius: 8px; overflow: hidden;">
-            <div style="width: 63%; height: 100%; background: #22C55E; border-radius: 8px;"></div>
-          </div>
-          <div style="width: 60px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: #22C55E;">740</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Filters -->
-  <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 18px 24px; margin-top: 20px; display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap;">
-
-    <div style="display: flex; flex-direction: column; gap: 6px;">
-      <label for="f-circle" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Circle</label>
-      <select id="f-circle" style="width: 150px; height: 38px; padding: 0 12px; background: #1C1C2A; border: 1px solid #2C2C42; border-radius: 8px; color: #E7E7F0; font-family: 'Manrope', sans-serif; font-size: 13px;">
-        <option>All Circles</option>
-        <option>JAVA</option>
-        <option>JAYA</option>
-        <option>KALISUMAPA</option>
-        <option>SUMATERA</option>
-      </select>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 6px;">
-      <label for="f-region" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Region</label>
-      <select id="f-region" style="width: 166px; height: 38px; padding: 0 12px; background: #1C1C2A; border: 1px solid #2C2C42; border-radius: 8px; color: #E7E7F0; font-family: 'Manrope', sans-serif; font-size: 13px;">
-        <option>All Regions</option>
-        <option>CENTRAL SUMATERA</option>
-        <option>BALI NUSRA</option>
-        <option>INNER JAKARTA</option>
-        <option>CENTRAL JAVA</option>
-        <option>SULAWESI</option>
-        <option>KALIMANTAN</option>
-      </select>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 6px;">
-      <label for="f-rts" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 700;">RTS</label>
-      <select id="f-rts" style="width: 166px; height: 38px; padding: 0 12px; background: #1C1C2A; border: 1px solid #2C2C42; border-radius: 8px; color: #E7E7F0; font-family: 'Manrope', sans-serif; font-size: 13px;">
-        <option>All RTS (97)</option>
-        <option>Erick Rikardo</option>
-        <option>Irwan Seftian</option>
-        <option>Agung Arbiyanto</option>
-        <option>Abdul Gazali</option>
-      </select>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 6px;">
-      <label for="f-status" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Fuel Status</label>
-      <select id="f-status" style="width: 150px; height: 38px; padding: 0 12px; background: #1C1C2A; border: 1px solid #2C2C42; border-radius: 8px; color: #E7E7F0; font-family: 'Manrope', sans-serif; font-size: 13px;">
-        <option>All Status</option>
-        <option>Low Fuel</option>
-        <option>Normal</option>
-        <option>No Baseline</option>
-      </select>
-    </div>
-
-    <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-width: 220px;">
-      <label for="f-search" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Search Site ID</label>
-      <div style="position: relative;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9494AC" stroke-width="2" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%);"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input id="f-search" type="text" placeholder="e.g. 13SUB0142" style="width: 100%; height: 38px; padding: 0 12px 0 34px; background: #1C1C2A; border: 1px solid #2C2C42; border-radius: 8px; color: #E7E7F0; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">
-      </div>
-    </div>
-
-    <button type="button" style="height: 38px; padding: 0 18px; border-radius: 8px; background: transparent; border: 1px solid #2C2C42; color: #B4B4C8; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;">Reset</button>
-
-    <button type="button" style="height: 38px; padding: 0 18px; border-radius: 8px; background: #FFFFFF; border: none; color: #0A0A12; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A12" stroke-width="2.5"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
-      Export Data
-    </button>
-
-  </div>
-  <div style="font-size: 11.5px; color: #7D7D98; margin-top: 8px; padding: 0 4px;">These filters only change the table below. The numbers and charts above always show the whole fleet.</div>
-
-  <!-- Table -->
-  <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; margin-top: 20px; overflow: hidden;">
-    <div style="padding: 22px 24px 18px 24px; border-bottom: 1px solid #1C1C2A;">
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600;">Low Fuel Query</div>
-    </div>
-
-    <div style="overflow-x: auto;">
-    <table style="min-width: 900px;">
-      <thead>
-        <tr>
-          <th style="padding-left: 24px;">Site ID</th>
-          <th>Site Name</th>
-          <th>Region</th>
-          <th style="text-align: right;">Running (Hrs)</th>
-          <th style="text-align: right;">Fuel Used (L)</th>
-          <th style="text-align: right;">Remaining (L)</th>
-          <th style="text-align: right;">Backup (Hrs)</th>
-          <th style="padding-right: 24px;">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">04PKR0038</a></td>
-          <td>ASIAN_AGRI_EP</td>
-          <td style="color: #8B8BA3;">CENTRAL SUMATERA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">195.9</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">705.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−705.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−195.9</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">19KPG0018</a></td>
-          <td>OEBOBO_EP</td>
-          <td style="color: #8B8BA3;">BALI NUSRA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">236.9</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">1,708.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−1,358.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−188.4</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">13KRW0413</a></td>
-          <td>KALIHURIP_EP</td>
-          <td style="color: #8B8BA3;">INNER JAKARTA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">262.3</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">944.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−644.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−179.0</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">14KND0052</a></td>
-          <td>SINGOROJO_MT</td>
-          <td style="color: #8B8BA3;">CENTRAL JAVA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">214.9</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">969.0</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−769.0</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−170.5</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">30KLU0007</a></td>
-          <td>VS_LAPAI_EP</td>
-          <td style="color: #8B8BA3;">SULAWESI</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">211.7</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">762.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−612.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−170.1</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">22SAA0009</a></td>
-          <td>BATU_TIMBAU_MT</td>
-          <td style="color: #8B8BA3;">KALIMANTAN</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">373.3</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">1,818.1</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−818.1</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−168.0</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">14SLW0140</a></td>
-          <td>KEMANTRAN_EP</td>
-          <td style="color: #8B8BA3;">CENTRAL JAVA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">203.6</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">732.9</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E;">−602.9</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F43F5E; font-weight: 600;">−167.5</td>
-          <td style="padding-right: 24px;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-        <tr>
-          <td style="padding-left: 24px; font-family: 'IBM Plex Mono', monospace;"><a href="detail.html">13SUB0142</a></td>
-          <td>KASOMALANG_EP</td>
-          <td style="color: #8B8BA3;">WEST JAVA</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">26.3</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace;">94.8</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F59E0B;">55.2</td>
-          <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; color: #F59E0B; font-weight: 600;">15.3</td>
-          <td style="padding-right: 24px; border-bottom: none;"><span style="background: #1C1013; color: #FB7185; border: 1px solid #3A1C22; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600;">LOW FUEL</span></td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-    <div style="padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-top: 1px solid #1C1C2A;">
-      <div style="font-size: 12px; color: #7D7D98;">Showing 1–8 of 578 ranked sites</div>
-      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-        <button type="button" disabled style="width: 32px; height: 32px; border-radius: 8px; background: #12121C; border: 1px solid #262637; color: #3A3A4E; font-family: 'Manrope', sans-serif; font-size: 14px; cursor: not-allowed;">‹</button>
-        <button type="button" style="min-width: 32px; height: 32px; padding: 0 6px; border-radius: 8px; background: #22D3EE; border: 1px solid #22D3EE; color: #0A0A12; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700; cursor: pointer;">1</button>
-        <button type="button" style="min-width: 32px; height: 32px; padding: 0 6px; border-radius: 8px; background: #1C1C2A; border: 1px solid #262637; color: #B4B4C8; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; cursor: pointer;">2</button>
-        <button type="button" style="min-width: 32px; height: 32px; padding: 0 6px; border-radius: 8px; background: #1C1C2A; border: 1px solid #262637; color: #B4B4C8; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; cursor: pointer;">3</button>
-        <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #7D7D98; font-family: 'IBM Plex Mono', monospace; font-size: 13px;">…</div>
-        <button type="button" style="min-width: 32px; height: 32px; padding: 0 6px; border-radius: 8px; background: #1C1C2A; border: 1px solid #262637; color: #B4B4C8; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; cursor: pointer;">73</button>
-        <button type="button" style="width: 32px; height: 32px; border-radius: 8px; background: #1C1C2A; border: 1px solid #262637; color: #D6D6E4; font-family: 'Manrope', sans-serif; font-size: 14px; cursor: pointer;">›</button>
-        <div style="width: 1px; height: 20px; background: #262637; margin: 0 6px;"></div>
-        <a href="detail.html" style="font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">Open site detail →</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-</body>
+        function pctOf(n, d) {
+          return ((n / d) * 100).toFixed(1) + "%";
+        }
+        function setText(id, text) {
+          document.getElementById(id).textContent = text;
+        }
+        function applyFilter(i) {
+          selected = i;
+          var pick = function (c) {
+            return i === null
+              ? c.values.reduce(function (a, b) { return a + b; }, 0)
+              : c.values[i];
+          };
+          var low = pick(charts[0]),
+            normal = pick(charts[1]),
+            nb = pick(charts[2]),
+            total = low + normal + nb,
+            scope = i === null ? "fleet" : circles[i].name;
+          setText("kpi-total", fmt(total));
+          setText(
+            "kpi-total-sub",
+            i === null ? "Monitored genset sites" : "Monitored sites in " + scope,
+          );
+          setText("kpi-low", fmt(low));
+          setText("kpi-low-sub", pctOf(low, total) + " of " + scope);
+          setText("kpi-normal", fmt(normal));
+          setText("kpi-normal-sub", pctOf(normal, total) + " of " + scope);
+          setText("kpi-nb", fmt(nb));
+          document
+            .querySelectorAll("#circle-filter button")
+            .forEach(function (b) {
+              var on = b.getAttribute("data-circle") === (i === null ? "" : String(i));
+              b.classList.toggle("is-on", on);
+              b.setAttribute("aria-pressed", on);
+            });
+          cards.forEach(function (set) {
+            set(null);
+          });
+        }
+        document
+          .querySelectorAll("#circle-filter button")
+          .forEach(function (b) {
+            b.addEventListener("click", function () {
+              var v = b.getAttribute("data-circle");
+              applyFilter(v === "" ? null : +v);
+            });
+          });
+      })();
+    </script>
+  </body>
 </html>
