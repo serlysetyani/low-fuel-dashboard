@@ -761,23 +761,44 @@
           >
             Daily Fuel Usage
           </div>
-          <div class="seg" id="usage-range" role="group" aria-label="Time range">
-            <button type="button" class="is-on" data-days="7" aria-pressed="true">7 Days</button>
-            <button type="button" data-days="30" aria-pressed="false">30 Days</button>
+          <div
+            class="seg"
+            id="usage-range"
+            role="group"
+            aria-label="Time range"
+          >
+            <button
+              type="button"
+              class="is-on"
+              data-days="7"
+              aria-pressed="true"
+            >
+              7 Days
+            </button>
+            <button type="button" data-days="30" aria-pressed="false">
+              30 Days
+            </button>
           </div>
         </div>
         <div class="usage-stats">
           <div>
             <div class="usage-stat-label">Total Used</div>
-            <div class="usage-stat-val"><span id="usage-total" style="all: unset">0</span><span>L</span></div>
+            <div class="usage-stat-val">
+              <span id="usage-total" style="all: unset">0</span><span>L</span>
+            </div>
           </div>
           <div>
             <div class="usage-stat-label">Daily Average</div>
-            <div class="usage-stat-val"><span id="usage-avg" style="all: unset">0</span><span>L / day</span></div>
+            <div class="usage-stat-val">
+              <span id="usage-avg" style="all: unset">0</span
+              ><span>L / day</span>
+            </div>
           </div>
           <div>
             <div class="usage-stat-label">Peak Day</div>
-            <div class="usage-stat-val"><span id="usage-peak" style="all: unset">0</span><span>L</span></div>
+            <div class="usage-stat-val">
+              <span id="usage-peak" style="all: unset">0</span><span>L</span>
+            </div>
           </div>
         </div>
         <div id="usage-chart"><div id="usage-tip"></div></div>
@@ -788,11 +809,24 @@
         // Liters used per day, oldest first, ending the day before calculation
         var usage = [
           4.2, 0, 7.9, 12.6, 3.1, 0, 0, 18.4, 22.7, 9.5, 5.8, 0, 14.3, 26.1,
-          11.2, 6.7, 0, 0, 8.8, 19.6, 24.9, 13.4, 7.2, 3.6, 0, 10.8, 16.5,
-          18.5, 31.2, 45.1,
+          11.2, 6.7, 0, 0, 8.8, 19.6, 24.9, 13.4, 7.2, 3.6, 0, 10.8, 16.5, 18.5,
+          31.2, 45.1,
         ];
         var lastDay = new Date(2026, 8, 21);
-        var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
         var el = document.getElementById("usage-chart");
         var tip = document.getElementById("usage-tip");
         var days = 7;
@@ -819,60 +853,190 @@
         function render() {
           var data = usage.slice(-days);
           var n = data.length;
-          var total = data.reduce(function (a, b) { return a + b; }, 0);
+          var total = data.reduce(function (a, b) {
+            return a + b;
+          }, 0);
           document.getElementById("usage-total").textContent = f1(total);
           document.getElementById("usage-avg").textContent = f1(total / n);
-          document.getElementById("usage-peak").textContent = f1(Math.max.apply(null, data));
+          document.getElementById("usage-peak").textContent = f1(
+            Math.max.apply(null, data),
+          );
 
           var old = el.querySelector("svg");
           if (old) old.remove();
-          var W = el.clientWidth, H = el.clientHeight;
+          var W = el.clientWidth,
+            H = el.clientHeight;
           var m = { t: 12, r: 12, b: 28, l: 40 };
-          var iw = W - m.l - m.r, ih = H - m.t - m.b;
+          var iw = W - m.l - m.r,
+            ih = H - m.t - m.b;
           var step = 10;
-          var yMax = Math.max(step, Math.ceil(Math.max.apply(null, data) / step) * step);
-          if (yMax / step > 5) { step = Math.ceil(yMax / 5 / 10) * 10; yMax = Math.ceil(yMax / step) * step; }
-          var x = function (i) { return m.l + (n === 1 ? iw / 2 : (i / (n - 1)) * iw); };
-          var y = function (v) { return m.t + ih - (v / yMax) * ih; };
+          var yMax = Math.max(
+            step,
+            Math.ceil(Math.max.apply(null, data) / step) * step,
+          );
+          if (yMax / step > 5) {
+            step = Math.ceil(yMax / 5 / 10) * 10;
+            yMax = Math.ceil(yMax / step) * step;
+          }
+          var x = function (i) {
+            return m.l + (n === 1 ? iw / 2 : (i / (n - 1)) * iw);
+          };
+          var y = function (v) {
+            return m.t + ih - (v / yMax) * ih;
+          };
 
-          var svg = node("svg", { width: W, height: H, role: "img", "aria-label": "Daily fuel usage, last " + days + " days" }, el);
+          var svg = node(
+            "svg",
+            {
+              width: W,
+              height: H,
+              role: "img",
+              "aria-label": "Daily fuel usage, last " + days + " days",
+            },
+            el,
+          );
 
           // Recessive grid + y labels
           for (var v = 0; v <= yMax; v += step) {
-            node("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? "#262637" : "#1c1c2a", "stroke-width": 1 }, svg);
-            var t = node("text", { x: m.l - 10, y: y(v) + 4, "text-anchor": "end", fill: "#7d7d98", "font-size": 11, "font-family": "IBM Plex Mono, monospace" }, svg);
+            node(
+              "line",
+              {
+                x1: m.l,
+                x2: W - m.r,
+                y1: y(v),
+                y2: y(v),
+                stroke: v === 0 ? "#262637" : "#1c1c2a",
+                "stroke-width": 1,
+              },
+              svg,
+            );
+            var t = node(
+              "text",
+              {
+                x: m.l - 10,
+                y: y(v) + 4,
+                "text-anchor": "end",
+                fill: "#7d7d98",
+                "font-size": 11,
+                "font-family": "IBM Plex Mono, monospace",
+              },
+              svg,
+            );
             t.textContent = v + (v === yMax ? " L" : "");
           }
           // X labels: every day for 7D, every 5th day (ending on the latest) for 30D
           var every = days <= 7 ? 1 : 5;
           for (var i = n - 1; i >= 0; i -= every) {
-            var tx = node("text", { x: x(i), y: H - 8, "text-anchor": i === n - 1 ? "end" : i === 0 ? "start" : "middle", fill: "#7d7d98", "font-size": 11, "font-family": "Manrope, sans-serif" }, svg);
+            var tx = node(
+              "text",
+              {
+                x: x(i),
+                y: H - 8,
+                "text-anchor":
+                  i === n - 1 ? "end" : i === 0 ? "start" : "middle",
+                fill: "#7d7d98",
+                "font-size": 11,
+                "font-family": "Manrope, sans-serif",
+              },
+              svg,
+            );
             tx.textContent = label(dateAt(i, n));
           }
 
-          var pts = data.map(function (v, i) { return x(i) + "," + y(v); });
-          node("path", { d: "M" + x(0) + "," + y(0) + "L" + pts.join("L") + "L" + x(n - 1) + "," + y(0) + "Z", fill: "#22d3ee", "fill-opacity": 0.1 }, svg);
-          node("path", { d: "M" + pts.join("L"), fill: "none", stroke: "#22d3ee", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+          var pts = data.map(function (v, i) {
+            return x(i) + "," + y(v);
+          });
+          node(
+            "path",
+            {
+              d:
+                "M" +
+                x(0) +
+                "," +
+                y(0) +
+                "L" +
+                pts.join("L") +
+                "L" +
+                x(n - 1) +
+                "," +
+                y(0) +
+                "Z",
+              fill: "#22d3ee",
+              "fill-opacity": 0.1,
+            },
+            svg,
+          );
+          node(
+            "path",
+            {
+              d: "M" + pts.join("L"),
+              fill: "none",
+              stroke: "#22d3ee",
+              "stroke-width": 2,
+              "stroke-linejoin": "round",
+              "stroke-linecap": "round",
+            },
+            svg,
+          );
           if (days <= 7) {
             data.forEach(function (v, i) {
-              node("circle", { cx: x(i), cy: y(v), r: 4, fill: "#22d3ee", stroke: "#12121c", "stroke-width": 2 }, svg);
+              node(
+                "circle",
+                {
+                  cx: x(i),
+                  cy: y(v),
+                  r: 4,
+                  fill: "#22d3ee",
+                  stroke: "#12121c",
+                  "stroke-width": 2,
+                },
+                svg,
+              );
             });
           }
 
           // Hover: crosshair + focus dot + tooltip
-          var cross = node("line", { y1: m.t, y2: m.t + ih, stroke: "#3a3a4e", "stroke-width": 1, visibility: "hidden" }, svg);
-          var dot = node("circle", { r: 5, fill: "#22d3ee", stroke: "#12121c", "stroke-width": 2, visibility: "hidden" }, svg);
-          var hit = node("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg);
+          var cross = node(
+            "line",
+            {
+              y1: m.t,
+              y2: m.t + ih,
+              stroke: "#3a3a4e",
+              "stroke-width": 1,
+              visibility: "hidden",
+            },
+            svg,
+          );
+          var dot = node(
+            "circle",
+            {
+              r: 5,
+              fill: "#22d3ee",
+              stroke: "#12121c",
+              "stroke-width": 2,
+              visibility: "hidden",
+            },
+            svg,
+          );
+          var hit = node(
+            "rect",
+            { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" },
+            svg,
+          );
           hit.addEventListener("mousemove", function (e) {
             var r = svg.getBoundingClientRect();
             var i = Math.round(((e.clientX - r.left - m.l) / iw) * (n - 1));
             i = Math.max(0, Math.min(n - 1, i));
-            var px = x(i), py = y(data[i]);
-            cross.setAttribute("x1", px); cross.setAttribute("x2", px);
+            var px = x(i),
+              py = y(data[i]);
+            cross.setAttribute("x1", px);
+            cross.setAttribute("x2", px);
             cross.setAttribute("visibility", "visible");
-            dot.setAttribute("cx", px); dot.setAttribute("cy", py);
+            dot.setAttribute("cx", px);
+            dot.setAttribute("cy", py);
             dot.setAttribute("visibility", "visible");
-            tip.innerHTML = label(dateAt(i, n)) + " 2026<b>" + f1(data[i]) + " L</b>";
+            tip.innerHTML =
+              label(dateAt(i, n)) + " 2026<b>" + f1(data[i]) + " L</b>";
             tip.style.display = "block";
             var left = px + 12;
             if (left + tip.offsetWidth > W) left = px - tip.offsetWidth - 12;
@@ -889,10 +1053,12 @@
         document.querySelectorAll("#usage-range button").forEach(function (b) {
           b.addEventListener("click", function () {
             days = +b.getAttribute("data-days");
-            document.querySelectorAll("#usage-range button").forEach(function (o) {
-              o.classList.toggle("is-on", o === b);
-              o.setAttribute("aria-pressed", o === b);
-            });
+            document
+              .querySelectorAll("#usage-range button")
+              .forEach(function (o) {
+                o.classList.toggle("is-on", o === b);
+                o.setAttribute("aria-pressed", o === b);
+              });
             render();
           });
         });
