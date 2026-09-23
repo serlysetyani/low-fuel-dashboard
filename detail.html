@@ -1,130 +1,904 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Low Fuel Monitoring Dashboard — Site Detail</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<style>
-  body { margin: 0; background: #0A0A12; }
-  * { box-sizing: border-box; }
-  .dt a { color: #22D3EE; text-decoration: none; }
-  .dt a:hover { color: #67E8F9; }
-  .dt table { border-collapse: collapse; width: 100%; }
-  .dt th { text-align: left; font-family: 'Manrope', sans-serif; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494AC; font-weight: 600; padding: 0 12px 10px 0; border-bottom: 1px solid #262637; }
-  .dt td { padding: 11px 12px 11px 0; border-bottom: 1px solid #1C1C2A; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: #D6D6E4; vertical-align: top; }
-</style>
-</head>
-<body>
-<div class="dt" style="width: 100%; max-width: 1440px; margin: 0 auto; min-height: 100vh; background: #0A0A12; font-family: 'Manrope', sans-serif; color: #E7E7F0; padding: 32px clamp(16px, 4vw, 48px) 64px;">
-
-  <!-- Top bar -->
-  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid #1C1C2A;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <img src="logo-icon.png" alt="" width="34" height="34" style="border-radius: 9px; object-fit: cover;">
-      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.01em;">Low Fuel Monitoring Dashboard</div>
-    </div>
-    <div style="text-align: right; font-size: 12px; color: #9494AC;">
-      <div>Calculated at</div>
-      <div style="font-family: 'IBM Plex Mono', monospace; color: #B4B4C8; margin-top: 2px;">22 Sep 2026, 03:32:33 WIB</div>
-    </div>
-  </div>
-
-  <!-- Page title -->
-  <div style="padding: 26px 0 22px 0; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-    <div>
-      <a href="index.html" style="font-size: 12.5px; color: #9494AC; display: inline-flex; align-items: center; gap: 6px;">← Back to fleet overview</a>
-      <div style="display: flex; align-items: center; gap: 14px; margin-top: 10px;">
-        <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.01em; font-family: 'IBM Plex Mono', monospace;">13SUB0142</div>
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 500; color: #9494AC;">KASOMALANG_EP</div>
-      </div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 10px; background: #1C1013; border: 1px solid #3A1C22; padding: 10px 18px; border-radius: 12px;">
-      <div style="width: 8px; height: 8px; border-radius: 999px; background: #FB7185;"></div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: #FB7185; letter-spacing: 0.02em;">LOW FUEL — REFILL RECOMMENDED</div>
-    </div>
-  </div>
-
-  <!-- KPI strip -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Est. Remaining Runtime</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F59E0B; margin-top: 10px;">15.3 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">Hours</span></div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">About 0.6 days left, running as usual</div>
-    </div>
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Est. Remaining Fuel</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F59E0B; margin-top: 10px;">55.2 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">Liter</span></div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">13.8% of the 400 L tank</div>
-    </div>
-    <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 20px 22px;">
-      <div style="font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #9494AC; font-weight: 700;">Consumption Rate</div>
-      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #F1F1F6; margin-top: 10px;">3.6 <span style="font-size: 15px; font-weight: 600; color: #9494AC;">L / Hour</span></div>
-      <div style="font-size: 12px; color: #9494AC; margin-top: 6px;">Fuel this genset burns per hour</div>
-    </div>
-  </div>
-
-  <!-- Main grid -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-top: 20px;">
-
-      <!-- Site info -->
-      <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 22px;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 16px;">Site &amp; Genset Information</div>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site ID</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">13SUB0142</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site Name</span><span style="font-weight: 600;">KASOMALANG_EP</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Region</span><span style="font-weight: 600;">West Java</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Circle</span><span style="font-weight: 600;">Jaya</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Hub Type</span><span style="font-weight: 600;">Medium Hub Site</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Genset Brand / Engine</span><span style="font-weight: 600;">Deutz F3M2011</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Generator Size</span><span style="font-weight: 600;">20.0 kVA</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Tank Size</span><span style="font-weight: 600;">400 Liter</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Last Maintenance Visit</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">19 May 2026</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Last Refuel Date</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600;">21 Mar 2025</span></div>
-          <div style="display: flex; justify-content: space-between;"><span style="color: #8B8BA3;">Site Technician</span><span style="font-weight: 600;">Erick Rikardo</span></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Low Fuel Monitoring Dashboard — Site Detail</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    />
+    <style>
+      body {
+        margin: 0;
+        background: #0a0a12;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .dt a {
+        color: #22d3ee;
+        text-decoration: none;
+      }
+      .dt a:hover {
+        color: #67e8f9;
+      }
+      .dt table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .dt th {
+        text-align: left;
+        font-family: "Manrope", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #9494ac;
+        font-weight: 600;
+        padding: 0 12px 10px 0;
+        border-bottom: 1px solid #262637;
+      }
+      .dt td {
+        padding: 11px 12px 11px 0;
+        border-bottom: 1px solid #1c1c2a;
+        font-family: "Manrope", sans-serif;
+        font-size: 12.5px;
+        color: #d6d6e4;
+        vertical-align: top;
+      }
+      .dt tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .dt.info td {
+        font-size: 13px;
+        vertical-align: middle;
+      }
+      .seg {
+        display: inline-flex;
+        gap: 2px;
+        padding: 3px;
+        background: #0a0a12;
+        border: 1px solid #262637;
+        border-radius: 10px;
+      }
+      .seg button {
+        height: 28px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 7px;
+        background: transparent;
+        color: #9494ac;
+        font-family: "Manrope", sans-serif;
+        font-size: 12.5px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .seg button:hover {
+        color: #e7e7f0;
+      }
+      .seg button.is-on {
+        background: #22d3ee;
+        color: #0a0a12;
+        font-weight: 700;
+      }
+      .usage-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        margin: 18px 0 8px;
+      }
+      .usage-stat-label {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #9494ac;
+        font-weight: 700;
+      }
+      .usage-stat-val {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #f1f1f6;
+        margin-top: 4px;
+      }
+      .usage-stat-val span {
+        font-size: 12px;
+        font-weight: 600;
+        color: #9494ac;
+        margin-left: 3px;
+      }
+      #usage-chart {
+        position: relative;
+        width: 100%;
+        height: 260px;
+      }
+      #usage-chart svg {
+        display: block;
+      }
+      #usage-tip {
+        position: absolute;
+        pointer-events: none;
+        background: #1c1c2a;
+        border: 1px solid #2c2c42;
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 12px;
+        color: #9494ac;
+        white-space: nowrap;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        display: none;
+      }
+      #usage-tip b {
+        display: block;
+        margin-top: 2px;
+        color: #f1f1f6;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="dt"
+      style="
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        min-height: 100vh;
+        background: #0a0a12;
+        font-family: &quot;Manrope&quot;, sans-serif;
+        color: #e7e7f0;
+        padding: 32px clamp(16px, 4vw, 48px) 64px;
+      "
+    >
+      <!-- Top bar -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 12px;
+          padding-bottom: 24px;
+          border-bottom: 1px solid #1c1c2a;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 12px">
+          <img
+            src="logo-icon.png"
+            alt=""
+            width="34"
+            height="34"
+            style="border-radius: 9px; object-fit: cover"
+          />
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-weight: 700;
+              font-size: 17px;
+              letter-spacing: 0.01em;
+            "
+          >
+            Low Fuel Monitoring Dashboard
+          </div>
         </div>
-      </div>
-
-      <!-- Fuel gauge -->
-      <div style="background: #12121C; border: 1px solid #262637; border-radius: 14px; padding: 22px;">
-        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600;">Fuel Level Prediction</div>
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <svg width="240" height="240" viewBox="0 0 240 240" style="margin-top: 6px; max-width: 100%; height: auto;">
-            <circle cx="120" cy="120" r="98" fill="none" stroke="#1C1C2A" stroke-width="20"></circle>
-            <circle cx="120" cy="120" r="98" fill="none" stroke="#F59E0B" stroke-width="20" stroke-linecap="round" stroke-dasharray="85 530.8" transform="rotate(-90 120 120)"></circle>
-            <text x="120" y="112" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="40" font-weight="700" fill="#F1F1F6">13.8%</text>
-            <text x="120" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="15" fill="#8B8BA3">55.2 of 400 L</text>
-          </svg>
-          <div style="margin-top: 18px; background: #1C1013; border: 1px solid #3A1C22; color: #FB7185; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 999px;">BELOW 60 L THRESHOLD</div>
-        </div>
-
-        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #1C1C2A;">
-          <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 12px;">Genset Runtime</div>
-          <div style="overflow-x: auto;">
-          <table class="dt" style="min-width: 300px;">
-            <thead>
-              <tr>
-                <th>Alarm Type</th>
-                <th style="text-align: right;">Duration (Hr)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="display: flex; align-items: center; gap: 8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#565670" stroke-width="2.5" style="flex-shrink: 0;"><path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path></svg> Genset Running Alarm</td>
-                <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; border-bottom: none;">0.00</td>
-              </tr>
-              <tr>
-                <td style="display: flex; align-items: center; gap: 8px; border-bottom: none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" style="flex-shrink: 0;"><path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path></svg> Mains Failure Alarm</td>
-                <td style="text-align: right; font-family: 'IBM Plex Mono', monospace; border-bottom: none;">26.32</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="text-align: right; font-size: 12px; color: #9494ac">
+          <div>Calculated at</div>
+          <div
+            style="
+              font-family: &quot;IBM Plex Mono&quot;, monospace;
+              color: #b4b4c8;
+              margin-top: 2px;
+            "
+          >
+            22 Sep 2026, 03:32:33 WIB
           </div>
         </div>
       </div>
 
-  </div>
+      <!-- Page title -->
+      <div
+        style="
+          padding: 26px 0 22px 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+        "
+      >
+        <div>
+          <a
+            href="index.html"
+            style="
+              font-size: 12.5px;
+              color: #9494ac;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+            "
+            >← Back to fleet overview</a
+          >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 14px;
+              margin-top: 10px;
+            "
+          >
+            <div
+              style="
+                font-size: 28px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                font-family: &quot;IBM Plex Mono&quot;, monospace;
+              "
+            >
+              13SUB0142
+            </div>
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                color: #9494ac;
+              "
+            >
+              KASOMALANG_EP
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1c1013;
+            border: 1px solid #3a1c22;
+            padding: 10px 18px;
+            border-radius: 12px;
+          "
+        >
+          <div
+            style="
+              width: 8px;
+              height: 8px;
+              border-radius: 999px;
+              background: #fb7185;
+            "
+          ></div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-weight: 700;
+              font-size: 15px;
+              color: #fb7185;
+              letter-spacing: 0.02em;
+            "
+          >
+            LOW FUEL — REFILL RECOMMENDED
+          </div>
+        </div>
+      </div>
 
-</div>
-</body>
+      <!-- KPI strip -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 16px;
+        "
+      >
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            Est. Remaining Runtime
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #f59e0b;
+              margin-top: 10px;
+            "
+          >
+            15.3
+            <span style="font-size: 15px; font-weight: 600; color: #9494ac"
+              >Hours</span
+            >
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            About 0.6 days left, running as usual
+          </div>
+        </div>
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            Est. Remaining Fuel
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #f59e0b;
+              margin-top: 10px;
+            "
+          >
+            55.2
+            <span style="font-size: 15px; font-weight: 600; color: #9494ac"
+              >Liter</span
+            >
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            13.8% of the 400 L tank
+          </div>
+        </div>
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            Consumption Rate
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #f1f1f6;
+              margin-top: 10px;
+            "
+          >
+            3.6
+            <span style="font-size: 15px; font-weight: 600; color: #9494ac"
+              >L / Hour</span
+            >
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            Fuel this genset burns per hour
+          </div>
+        </div>
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 20px 22px;
+          "
+        >
+          <div
+            style="
+              font-size: 11px;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+          >
+            Backup Time
+          </div>
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 32px;
+              font-weight: 700;
+              color: #f59e0b;
+              margin-top: 10px;
+            "
+          >
+            15.3
+            <span style="font-size: 15px; font-weight: 600; color: #9494ac"
+              >Hours</span
+            >
+          </div>
+          <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
+            In the below 24 hour backup group
+          </div>
+        </div>
+      </div>
+
+      <!-- Main grid -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+          gap: 16px;
+          margin-top: 20px;
+        "
+      >
+        <!-- Site info -->
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 22px;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 15px;
+              font-weight: 600;
+              margin-bottom: 12px;
+            "
+          >
+            Site &amp; Genset Information
+          </div>
+          <div style="overflow-x: auto">
+            <table class="dt info">
+              <thead>
+                <tr>
+                  <th style="width: 44%">Information</th>
+                  <th>Detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Site ID</td>
+                  <td
+                    style="
+                      font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      font-weight: 600;
+                      color: #e7e7f0;
+                    "
+                  >
+                    13SUB0142
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Site Name</td>
+                  <td style="font-weight: 600; color: #e7e7f0">
+                    KASOMALANG_EP
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Region</td>
+                  <td style="font-weight: 600; color: #e7e7f0">West Java</td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Circle</td>
+                  <td style="font-weight: 600; color: #e7e7f0">Jaya</td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Hub Type</td>
+                  <td style="font-weight: 600; color: #e7e7f0">
+                    Medium Hub Site
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">
+                    Genset Brand / Engine
+                  </td>
+                  <td style="font-weight: 600; color: #e7e7f0">
+                    Deutz F3M2011
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">
+                    Generator Size
+                  </td>
+                  <td style="font-weight: 600; color: #e7e7f0">20.0 kVA</td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Tank Size</td>
+                  <td style="font-weight: 600; color: #e7e7f0">400 Liter</td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Last PM</td>
+                  <td
+                    style="
+                      font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      font-weight: 600;
+                      color: #e7e7f0;
+                    "
+                  >
+                    19 May 2026
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">
+                    Last Refuel Date
+                  </td>
+                  <td
+                    style="
+                      font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      font-weight: 600;
+                      color: #e7e7f0;
+                    "
+                  >
+                    21 Mar 2025
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">RTS</td>
+                  <td style="font-weight: 600; color: #e7e7f0">
+                    Erick Rikardo
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Fuel gauge -->
+        <div
+          style="
+            background: #12121c;
+            border: 1px solid #262637;
+            border-radius: 14px;
+            padding: 22px;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Fuel Level Prediction
+          </div>
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <svg
+              width="240"
+              height="240"
+              viewBox="0 0 240 240"
+              style="margin-top: 6px; max-width: 100%; height: auto"
+            >
+              <circle
+                cx="120"
+                cy="120"
+                r="98"
+                fill="none"
+                stroke="#1C1C2A"
+                stroke-width="20"
+              ></circle>
+              <circle
+                cx="120"
+                cy="120"
+                r="98"
+                fill="none"
+                stroke="#F59E0B"
+                stroke-width="20"
+                stroke-linecap="round"
+                stroke-dasharray="85 530.8"
+                transform="rotate(-90 120 120)"
+              ></circle>
+              <text
+                x="120"
+                y="112"
+                text-anchor="middle"
+                font-family="Space Grotesk, sans-serif"
+                font-size="40"
+                font-weight="700"
+                fill="#F1F1F6"
+              >
+                13.8%
+              </text>
+              <text
+                x="120"
+                y="142"
+                text-anchor="middle"
+                font-family="Manrope, sans-serif"
+                font-size="15"
+                fill="#8B8BA3"
+              >
+                55.2 of 400 L
+              </text>
+            </svg>
+            <div
+              style="
+                margin-top: 18px;
+                background: #1c1013;
+                border: 1px solid #3a1c22;
+                color: #fb7185;
+                font-size: 12px;
+                font-weight: 600;
+                padding: 8px 16px;
+                border-radius: 999px;
+              "
+            >
+              BELOW 60 L THRESHOLD
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 24px;
+              padding-top: 20px;
+              border-top: 1px solid #1c1c2a;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 12px;
+              "
+            >
+              Genset Runtime
+            </div>
+            <div style="overflow-x: auto">
+              <table class="dt" style="min-width: 300px">
+                <thead>
+                  <tr>
+                    <th>Alarm Type</th>
+                    <th style="text-align: right">Duration (Hr)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span style="display: flex; align-items: center; gap: 8px"
+                        ><svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#565670"
+                          stroke-width="2.5"
+                          style="flex-shrink: 0"
+                        >
+                          <path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path>
+                        </svg>
+                        Genset Running Alarm</span
+                      >
+                    </td>
+                    <td
+                      style="
+                        text-align: right;
+                        font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      "
+                    >
+                      0.00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span style="display: flex; align-items: center; gap: 8px"
+                        ><svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#F59E0B"
+                          stroke-width="2.5"
+                          style="flex-shrink: 0"
+                        >
+                          <path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path>
+                        </svg>
+                        Mains Failure Alarm</span
+                      >
+                    </td>
+                    <td
+                      style="
+                        text-align: right;
+                        font-family: &quot;IBM Plex Mono&quot;, monospace;
+                      "
+                    >
+                      26.32
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily fuel usage -->
+      <div
+        style="
+          background: #12121c;
+          border: 1px solid #262637;
+          border-radius: 14px;
+          padding: 22px;
+          margin-top: 20px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 15px;
+              font-weight: 600;
+            "
+          >
+            Daily Fuel Usage
+          </div>
+          <div class="seg" id="usage-range" role="group" aria-label="Time range">
+            <button type="button" class="is-on" data-days="7" aria-pressed="true">7 Days</button>
+            <button type="button" data-days="30" aria-pressed="false">30 Days</button>
+          </div>
+        </div>
+        <div class="usage-stats">
+          <div>
+            <div class="usage-stat-label">Total Used</div>
+            <div class="usage-stat-val"><span id="usage-total" style="all: unset">0</span><span>L</span></div>
+          </div>
+          <div>
+            <div class="usage-stat-label">Daily Average</div>
+            <div class="usage-stat-val"><span id="usage-avg" style="all: unset">0</span><span>L / day</span></div>
+          </div>
+          <div>
+            <div class="usage-stat-label">Peak Day</div>
+            <div class="usage-stat-val"><span id="usage-peak" style="all: unset">0</span><span>L</span></div>
+          </div>
+        </div>
+        <div id="usage-chart"><div id="usage-tip"></div></div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        // Liters used per day, oldest first, ending the day before calculation
+        var usage = [
+          4.2, 0, 7.9, 12.6, 3.1, 0, 0, 18.4, 22.7, 9.5, 5.8, 0, 14.3, 26.1,
+          11.2, 6.7, 0, 0, 8.8, 19.6, 24.9, 13.4, 7.2, 3.6, 0, 10.8, 16.5,
+          18.5, 31.2, 45.1,
+        ];
+        var lastDay = new Date(2026, 8, 21);
+        var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var el = document.getElementById("usage-chart");
+        var tip = document.getElementById("usage-tip");
+        var days = 7;
+        var NS = "http://www.w3.org/2000/svg";
+
+        function dateAt(i, n) {
+          var d = new Date(lastDay);
+          d.setDate(d.getDate() - (n - 1 - i));
+          return d;
+        }
+        function label(d) {
+          return d.getDate() + " " + months[d.getMonth()];
+        }
+        function f1(n) {
+          return n.toFixed(1);
+        }
+        function node(tag, attrs, parent) {
+          var e = document.createElementNS(NS, tag);
+          for (var k in attrs) e.setAttribute(k, attrs[k]);
+          parent.appendChild(e);
+          return e;
+        }
+
+        function render() {
+          var data = usage.slice(-days);
+          var n = data.length;
+          var total = data.reduce(function (a, b) { return a + b; }, 0);
+          document.getElementById("usage-total").textContent = f1(total);
+          document.getElementById("usage-avg").textContent = f1(total / n);
+          document.getElementById("usage-peak").textContent = f1(Math.max.apply(null, data));
+
+          var old = el.querySelector("svg");
+          if (old) old.remove();
+          var W = el.clientWidth, H = el.clientHeight;
+          var m = { t: 12, r: 12, b: 28, l: 40 };
+          var iw = W - m.l - m.r, ih = H - m.t - m.b;
+          var step = 10;
+          var yMax = Math.max(step, Math.ceil(Math.max.apply(null, data) / step) * step);
+          if (yMax / step > 5) { step = Math.ceil(yMax / 5 / 10) * 10; yMax = Math.ceil(yMax / step) * step; }
+          var x = function (i) { return m.l + (n === 1 ? iw / 2 : (i / (n - 1)) * iw); };
+          var y = function (v) { return m.t + ih - (v / yMax) * ih; };
+
+          var svg = node("svg", { width: W, height: H, role: "img", "aria-label": "Daily fuel usage, last " + days + " days" }, el);
+
+          // Recessive grid + y labels
+          for (var v = 0; v <= yMax; v += step) {
+            node("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? "#262637" : "#1c1c2a", "stroke-width": 1 }, svg);
+            var t = node("text", { x: m.l - 10, y: y(v) + 4, "text-anchor": "end", fill: "#7d7d98", "font-size": 11, "font-family": "IBM Plex Mono, monospace" }, svg);
+            t.textContent = v + (v === yMax ? " L" : "");
+          }
+          // X labels: every day for 7D, every 5th day (ending on the latest) for 30D
+          var every = days <= 7 ? 1 : 5;
+          for (var i = n - 1; i >= 0; i -= every) {
+            var tx = node("text", { x: x(i), y: H - 8, "text-anchor": i === n - 1 ? "end" : i === 0 ? "start" : "middle", fill: "#7d7d98", "font-size": 11, "font-family": "Manrope, sans-serif" }, svg);
+            tx.textContent = label(dateAt(i, n));
+          }
+
+          var pts = data.map(function (v, i) { return x(i) + "," + y(v); });
+          node("path", { d: "M" + x(0) + "," + y(0) + "L" + pts.join("L") + "L" + x(n - 1) + "," + y(0) + "Z", fill: "#22d3ee", "fill-opacity": 0.1 }, svg);
+          node("path", { d: "M" + pts.join("L"), fill: "none", stroke: "#22d3ee", "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+          if (days <= 7) {
+            data.forEach(function (v, i) {
+              node("circle", { cx: x(i), cy: y(v), r: 4, fill: "#22d3ee", stroke: "#12121c", "stroke-width": 2 }, svg);
+            });
+          }
+
+          // Hover: crosshair + focus dot + tooltip
+          var cross = node("line", { y1: m.t, y2: m.t + ih, stroke: "#3a3a4e", "stroke-width": 1, visibility: "hidden" }, svg);
+          var dot = node("circle", { r: 5, fill: "#22d3ee", stroke: "#12121c", "stroke-width": 2, visibility: "hidden" }, svg);
+          var hit = node("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg);
+          hit.addEventListener("mousemove", function (e) {
+            var r = svg.getBoundingClientRect();
+            var i = Math.round(((e.clientX - r.left - m.l) / iw) * (n - 1));
+            i = Math.max(0, Math.min(n - 1, i));
+            var px = x(i), py = y(data[i]);
+            cross.setAttribute("x1", px); cross.setAttribute("x2", px);
+            cross.setAttribute("visibility", "visible");
+            dot.setAttribute("cx", px); dot.setAttribute("cy", py);
+            dot.setAttribute("visibility", "visible");
+            tip.innerHTML = label(dateAt(i, n)) + " 2026<b>" + f1(data[i]) + " L</b>";
+            tip.style.display = "block";
+            var left = px + 12;
+            if (left + tip.offsetWidth > W) left = px - tip.offsetWidth - 12;
+            tip.style.left = left + "px";
+            tip.style.top = Math.max(0, py - tip.offsetHeight - 8) + "px";
+          });
+          hit.addEventListener("mouseleave", function () {
+            cross.setAttribute("visibility", "hidden");
+            dot.setAttribute("visibility", "hidden");
+            tip.style.display = "none";
+          });
+        }
+
+        document.querySelectorAll("#usage-range button").forEach(function (b) {
+          b.addEventListener("click", function () {
+            days = +b.getAttribute("data-days");
+            document.querySelectorAll("#usage-range button").forEach(function (o) {
+              o.classList.toggle("is-on", o === b);
+              o.setAttribute("aria-pressed", o === b);
+            });
+            render();
+          });
+        });
+        window.addEventListener("resize", render);
+        render();
+      })();
+    </script>
+  </body>
 </html>
