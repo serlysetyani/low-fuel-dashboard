@@ -221,6 +221,17 @@
       .pie-chart path {
         cursor: pointer;
       }
+      /* filters share the row width; search gets double space */
+      .fleet-filters > div {
+        flex: 1 1 130px;
+        min-width: 0;
+      }
+      .fleet-filters > div:has(#f-search) {
+        flex: 2 1 220px;
+      }
+      .fleet-filters select {
+        width: 100% !important;
+      }
     </style>
   </head>
   <body>
@@ -1072,6 +1083,7 @@
 
       <!-- Filters -->
       <div
+        class="fleet-filters"
         style="
           background: #12121c;
           border: 1px solid #262637;
@@ -1221,6 +1233,39 @@
           </select>
         </div>
 
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label
+            for="f-source"
+            style="
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #9494ac;
+              font-weight: 700;
+            "
+            >Alert Source</label
+          >
+          <select
+            id="f-source"
+            style="
+              width: 150px;
+              height: 38px;
+              padding: 0 12px;
+              background: #1c1c2a;
+              border: 1px solid #2c2c42;
+              border-radius: 8px;
+              color: #e7e7f0;
+              font-family: &quot;Manrope&quot;, sans-serif;
+              font-size: 13px;
+            "
+          >
+            <option>All Sources</option>
+            <option>Calc + Sensor</option>
+            <option>Calc only</option>
+            <option>Sensor only</option>
+          </select>
+        </div>
+
         <div
           style="
             display: flex;
@@ -1355,7 +1400,7 @@
         </div>
 
         <div style="overflow-x: auto">
-          <table style="min-width: 900px">
+          <table style="min-width: 1140px">
             <thead>
               <tr>
                 <th style="padding-left: 24px">Site ID</th>
@@ -1363,8 +1408,10 @@
                 <th>Region</th>
                 <th style="text-align: right">Running (Hrs)</th>
                 <th style="text-align: right">Fuel Used (L)</th>
-                <th style="text-align: right">Remaining (L)</th>
+                <th style="text-align: right">Calc. Remaining (L)</th>
+                <th style="text-align: right">Sensor (L)</th>
                 <th style="text-align: right">Backup (Hrs)</th>
+                <th title="Which check raised the low fuel alert">Alert Source</th>
                 <th style="padding-right: 24px">Status</th>
               </tr>
             </thead>
@@ -1410,10 +1457,22 @@
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
+                  "
+                >
+                  42.0
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −195.9
+                </td>
+                <td>
+                  <span style="background: #1c1013; color: #fb7185; border: 1px solid #3a1c22; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc + Sensor</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1472,11 +1531,22 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <span style="color: #565670">No sensor</span>
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −188.4
+                </td>
+                <td>
+                  <span style="background: #1f1708; color: #f59e0b; border: 1px solid #3a2c10; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc only</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1535,11 +1605,22 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  310.5
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −179.0
+                </td>
+                <td>
+                  <span style="background: #1f1708; color: #f59e0b; border: 1px solid #3a2c10; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc only</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1598,11 +1679,22 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <span style="color: #565670">No sensor</span>
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −170.5
+                </td>
+                <td>
+                  <span style="background: #1f1708; color: #f59e0b; border: 1px solid #3a2c10; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc only</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1662,10 +1754,22 @@
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
+                  "
+                >
+                  18.3
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −170.1
+                </td>
+                <td>
+                  <span style="background: #1c1013; color: #fb7185; border: 1px solid #3a1c22; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc + Sensor</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1724,11 +1828,22 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <span style="color: #565670">No sensor</span>
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −168.0
+                </td>
+                <td>
+                  <span style="background: #1f1708; color: #f59e0b; border: 1px solid #3a2c10; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc only</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1787,11 +1902,22 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  "
+                >
+                  <span style="color: #565670">No sensor</span>
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f43f5e;
                     font-weight: 600;
                   "
                 >
                   −167.5
+                </td>
+                <td>
+                  <span style="background: #1f1708; color: #f59e0b; border: 1px solid #3a2c10; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc only</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span
@@ -1850,11 +1976,23 @@
                   style="
                     text-align: right;
                     font-family: &quot;IBM Plex Mono&quot;, monospace;
+                    color: #f43f5e;
+                  "
+                >
+                  48.6
+                </td>
+                <td
+                  style="
+                    text-align: right;
+                    font-family: &quot;IBM Plex Mono&quot;, monospace;
                     color: #f59e0b;
                     font-weight: 600;
                   "
                 >
                   15.3
+                </td>
+                <td>
+                  <span style="background: #1c1013; color: #fb7185; border: 1px solid #3a1c22; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap">Calc + Sensor</span>
                 </td>
                 <td style="padding-right: 24px">
                   <span

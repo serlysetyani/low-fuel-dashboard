@@ -50,6 +50,8 @@
         border-bottom: none;
       }
       .dt.info td {
+        padding-top: 8px;
+        padding-bottom: 8px;
         font-size: 13px;
         vertical-align: middle;
       }
@@ -106,6 +108,116 @@
         font-weight: 600;
         color: #9494ac;
         margin-left: 3px;
+      }
+      .ctl {
+        height: 38px;
+        padding: 0 12px;
+        background-color: #1c1c2a;
+        border: 1px solid #2c2c42;
+        border-radius: 8px;
+        color: #e7e7f0;
+        font-family: "Manrope", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color-scheme: dark;
+        cursor: pointer;
+        transition: border-color 0.15s;
+      }
+      .ctl:hover {
+        border-color: #3d3d58;
+      }
+      .ctl:focus-visible {
+        outline: none;
+        border-color: #22d3ee;
+        box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+      }
+      select.ctl {
+        appearance: none;
+        -webkit-appearance: none;
+        min-width: 140px;
+        padding-right: 34px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239494ac' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+      }
+      input.ctl[type="date"] {
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+      }
+      input.ctl::-webkit-calendar-picker-indicator {
+        opacity: 0.55;
+        margin-left: 8px;
+        cursor: pointer;
+      }
+      .abn-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 10px;
+      }
+      .abn {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #161622;
+        border: 1px solid #262637;
+        border-left: 3px solid var(--c);
+      }
+      .abn-type {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--c);
+      }
+      .abn-msg {
+        font-size: 13px;
+        color: #e7e7f0;
+        margin-top: 3px;
+      }
+      .abn-time {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11.5px;
+        color: #8b8ba3;
+        margin-top: 4px;
+      }
+      .log-filters {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr; /* Start From holds two controls */
+        gap: 12px;
+        margin: 16px 0 14px;
+      }
+      .log-filters > div,
+      .log-from-pair {
+        min-width: 0;
+      }
+      .log-filters > div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .log-from-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .log-filters .ctl {
+        width: 100%;
+        min-width: 0;
+      }
+      @media (max-width: 640px) {
+        .log-filters {
+          grid-template-columns: 1fr 1fr;
+        }
+        .log-filters > div:first-child {
+          grid-column: 1 / -1;
+        }
+      }
+      .log-scroll th {
+        position: sticky;
+        top: 0;
+        background: #12121c;
       }
       #usage-chart {
         position: relative;
@@ -303,6 +415,9 @@
             "
           >
             LOW FUEL — REFILL RECOMMENDED
+            <div style="font-family: &quot;Manrope&quot;, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0; color: #c98a96; margin-top: 2px">
+              Raised by Calculation + Sensor
+            </div>
           </div>
         </div>
       </div>
@@ -311,7 +426,7 @@
       <div
         style="
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
           gap: 16px;
         "
       >
@@ -443,7 +558,7 @@
               font-weight: 700;
             "
           >
-            Backup Time
+            Forecasted Refuelling
           </div>
           <div
             style="
@@ -454,22 +569,31 @@
               margin-top: 10px;
             "
           >
-            15.3
+            22 Sep
             <span style="font-size: 15px; font-weight: 600; color: #9494ac"
-              >Hours</span
+              >2026</span
             >
           </div>
           <div style="font-size: 12px; color: #9494ac; margin-top: 6px">
-            In the below 24 hour backup group
+            Before 18:50 WIB, when the tank runs dry
           </div>
         </div>
+      </div>
+
+      <!-- Abnormalities: filled by script from fuel usage vs genset running alarms -->
+      <div style="background: #12121c; border: 1px solid #262637; border-radius: 14px; padding: 18px 22px; margin-top: 16px">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px">
+          <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 15px; font-weight: 600">Abnormalities</div>
+          <span id="abn-count" style="font-size: 11.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px"></span>
+        </div>
+        <div id="abn-list" class="abn-list" aria-live="polite"></div>
       </div>
 
       <!-- Main grid -->
       <div
         style="
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
           gap: 16px;
           margin-top: 20px;
         "
@@ -481,6 +605,8 @@
             border: 1px solid #262637;
             border-radius: 14px;
             padding: 22px;
+            display: flex;
+            flex-direction: column;
           "
         >
           <div
@@ -493,8 +619,8 @@
           >
             Site &amp; Genset Information
           </div>
-          <div style="overflow-x: auto">
-            <table class="dt info">
+          <div style="overflow-x: auto; flex: 1">
+            <table class="dt info" style="height: 100%">
               <thead>
                 <tr>
                   <th style="width: 44%">Information</th>
@@ -549,8 +675,12 @@
                   <td style="font-weight: 600; color: #e7e7f0">20.0 kVA</td>
                 </tr>
                 <tr>
-                  <td style="color: #8b8ba3; white-space: nowrap">Tank Size</td>
-                  <td style="font-weight: 600; color: #e7e7f0">400 Liter</td>
+                  <td style="color: #8b8ba3; white-space: nowrap">Tank Capacity</td>
+                  <td style="font-weight: 600; color: #e7e7f0">400 Liter (4 tanks)</td>
+                </tr>
+                <tr>
+                  <td style="color: #8b8ba3; white-space: nowrap">Fuel Sensor</td>
+                  <td style="font-weight: 600; color: #e7e7f0">Installed</td>
                 </tr>
                 <tr>
                   <td style="color: #8b8ba3; white-space: nowrap">Last PM</td>
@@ -611,8 +741,8 @@
             style="display: flex; flex-direction: column; align-items: center"
           >
             <svg
-              width="240"
-              height="240"
+              width="190"
+              height="190"
               viewBox="0 0 240 240"
               style="margin-top: 6px; max-width: 100%; height: auto"
             >
@@ -673,91 +803,55 @@
             </div>
           </div>
 
-          <div
-            style="
-              margin-top: 24px;
-              padding-top: 20px;
-              border-top: 1px solid #1c1c2a;
-            "
-          >
-            <div
-              style="
-                font-family: &quot;Space Grotesk&quot;, sans-serif;
-                font-size: 15px;
-                font-weight: 600;
-                margin-bottom: 12px;
-              "
-            >
-              Genset Runtime
+          <!-- Alert source: low fuel is raised when either check is below the 60 L threshold -->
+          <div style="margin-top: 20px; padding: 12px 14px; background: #161622; border: 1px solid #262637; border-radius: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 13px">
+            <div style="display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px">
+              <div><div style="color: #e7e7f0; font-weight: 600">Calculation</div><div style="color: #8b8ba3; font-size: 11.5px">Usage-based estimate</div></div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0">55.2 L</span>
+              <span style="color: #fb7185; background: #1c1013; border: 1px solid #3a1c22; border-radius: 999px; padding: 2px 9px; font-size: 11px; font-weight: 700">Low</span>
             </div>
-            <div style="overflow-x: auto">
-              <table class="dt" style="min-width: 300px">
-                <thead>
-                  <tr>
-                    <th>Alarm Type</th>
-                    <th style="text-align: right">Duration (Hr)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <span style="display: flex; align-items: center; gap: 8px"
-                        ><svg
-                          width="13"
-                          height="13"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#565670"
-                          stroke-width="2.5"
-                          style="flex-shrink: 0"
-                        >
-                          <path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path>
-                        </svg>
-                        Genset Running Alarm</span
-                      >
-                    </td>
-                    <td
-                      style="
-                        text-align: right;
-                        font-family: &quot;IBM Plex Mono&quot;, monospace;
-                      "
-                    >
-                      0.00
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span style="display: flex; align-items: center; gap: 8px"
-                        ><svg
-                          width="13"
-                          height="13"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#F59E0B"
-                          stroke-width="2.5"
-                          style="flex-shrink: 0"
-                        >
-                          <path d="M13 2 L4 14 h6 l-1 8 9 -12 h-6 z"></path>
-                        </svg>
-                        Mains Failure Alarm</span
-                      >
-                    </td>
-                    <td
-                      style="
-                        text-align: right;
-                        font-family: &quot;IBM Plex Mono&quot;, monospace;
-                      "
-                    >
-                      26.32
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div style="display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 12px">
+              <div><div style="color: #e7e7f0; font-weight: 600">Fuel Sensor</div><div style="color: #8b8ba3; font-size: 11.5px">Latest reading, 22 Sep 03:30</div></div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0">48.6 L</span>
+              <span style="color: #fb7185; background: #1c1013; border: 1px solid #3a1c22; border-radius: 999px; padding: 2px 9px; font-size: 11px; font-weight: 700">Low</span>
+            </div>
+          </div>
+
+          <!-- Per-tank levels; render only the tanks the site has (1-4), they sum to the gauge total -->
+          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 13px">
+            <div style="display: grid; grid-template-columns: 56px 1fr 108px; align-items: center; gap: 12px; text-align: right">
+              <span style="color: #8b8ba3; text-align: left">Tank 1</span>
+              <div style="height: 8px; background: #1c1c2a; border-radius: 999px; overflow: hidden" role="img" aria-label="Tank 1: 20.1 of 100 liters">
+                <div style="width: 20.1%; height: 100%; background: #f59e0b; border-radius: 999px"></div>
+              </div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0; white-space: nowrap">20.1 <span style="color: #8b8ba3; font-weight: 400">/ 100 L</span></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 56px 1fr 108px; align-items: center; gap: 12px; text-align: right">
+              <span style="color: #8b8ba3; text-align: left">Tank 2</span>
+              <div style="height: 8px; background: #1c1c2a; border-radius: 999px; overflow: hidden" role="img" aria-label="Tank 2: 12.0 of 100 liters">
+                <div style="width: 12.0%; height: 100%; background: #f59e0b; border-radius: 999px"></div>
+              </div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0; white-space: nowrap">12.0 <span style="color: #8b8ba3; font-weight: 400">/ 100 L</span></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 56px 1fr 108px; align-items: center; gap: 12px; text-align: right">
+              <span style="color: #8b8ba3; text-align: left">Tank 3</span>
+              <div style="height: 8px; background: #1c1c2a; border-radius: 999px; overflow: hidden" role="img" aria-label="Tank 3: 15.6 of 100 liters">
+                <div style="width: 15.6%; height: 100%; background: #f59e0b; border-radius: 999px"></div>
+              </div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0; white-space: nowrap">15.6 <span style="color: #8b8ba3; font-weight: 400">/ 100 L</span></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 56px 1fr 108px; align-items: center; gap: 12px; text-align: right">
+              <span style="color: #8b8ba3; text-align: left">Tank 4</span>
+              <div style="height: 8px; background: #1c1c2a; border-radius: 999px; overflow: hidden" role="img" aria-label="Tank 4: 7.5 of 100 liters">
+                <div style="width: 7.5%; height: 100%; background: #f59e0b; border-radius: 999px"></div>
+              </div>
+              <span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-weight: 600; color: #e7e7f0; white-space: nowrap">7.5 <span style="color: #8b8ba3; font-weight: 400">/ 100 L</span></span>
             </div>
           </div>
         </div>
       </div>
 
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 16px; margin-top: 20px">
       <!-- Daily fuel calculation -->
       <div
         style="
@@ -765,7 +859,7 @@
           border: 1px solid #262637;
           border-radius: 14px;
           padding: 22px;
-          margin-top: 20px;
+          min-width: 0;
         "
       >
         <div
@@ -810,6 +904,54 @@
           </div>
         </div>
         <div id="usage-chart"><div id="usage-tip"></div></div>
+      </div>
+
+      <!-- Genset running alarm log -->
+      <div style="background: #12121c; border: 1px solid #262637; border-radius: 14px; padding: 22px; min-width: 0">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px">
+          <div style="font-family: &quot;Space Grotesk&quot;, sans-serif; font-size: 15px; font-weight: 600">Genset Running Alarm Log</div>
+          <div id="log-summary" style="font-size: 12px; color: #9494ac" aria-live="polite"></div>
+        </div>
+        <div class="log-filters">
+          <div>
+            <label for="log-from" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494ac; font-weight: 700">Start From</label>
+            <div class="log-from-pair">
+              <!-- keep in sync with Last Refuel Date / Last PM in the site info table -->
+              <select id="log-from-preset" aria-label="Start date preset" class="ctl">
+                <option value="2025-03-21">Last Refuel</option>
+                <option value="2026-05-19">Last PM</option>
+                <option value="">Custom date</option>
+              </select>
+              <input id="log-from" type="date" class="ctl" />
+            </div>
+          </div>
+          <div>
+            <label for="log-to" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494ac; font-weight: 700">To</label>
+            <input id="log-to" type="date" class="ctl" />
+          </div>
+          <div>
+            <label for="log-status" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9494ac; font-weight: 700">Status</label>
+            <select id="log-status" class="ctl">
+              <option value="">All Status</option>
+              <option value="running">Running</option>
+              <option value="cleared">Cleared</option>
+            </select>
+          </div>
+        </div>
+        <div class="log-scroll" style="overflow: auto; max-height: 340px">
+          <table class="dt" style="min-width: 480px">
+            <thead>
+              <tr>
+                <th>Alarm Start</th>
+                <th>Alarm Cleared</th>
+                <th style="text-align: right">Duration (Hr)</th>
+                <th style="text-align: right">Status</th>
+              </tr>
+            </thead>
+            <tbody id="log-body"></tbody>
+          </table>
+        </div>
+      </div>
       </div>
     </div>
     <script>
@@ -963,6 +1105,120 @@
         wire("#usage-tabs", "aria-selected", function (b) { view = b.getAttribute("data-view"); });
         window.addEventListener("resize", render);
         render();
+
+        // Genset running alarm log. Placeholder: one alarm per day with fuel usage, duration = liters / 3.6 L/h.
+        // Real data: rows of {start, end}; end null means the alarm is still running.
+        var RATE = 3.6;
+        var NOW = new Date(2026, 8, 22, 3, 32, 33); // "Calculated at"
+        // Placeholder: liters lost on a day without the genset running (day index -> L).
+        var LOSS = { 26: 4.2, 28: 22.0 };
+        var alarms = [];
+        usage.forEach(function (l, i) {
+          var run = l - (LOSS[i] || 0);
+          if (run <= 0) return;
+          var start = dateAt(i, usage.length);
+          start.setHours(6 + ((i * 5) % 10), (i * 17) % 60);
+          alarms.push({ start: start, end: new Date(start.getTime() + (run / RATE) * 3600e3) });
+        });
+        alarms.push({ start: new Date(2026, 8, 22, 1, 10), end: null }); // placeholder: still running
+        alarms.reverse(); // newest first
+
+        // Abnormality rules.
+        // shortcut: daily totals only; real leak/theft detection should use the tank sensor time series.
+        var THEFT_L = 15; // unexplained drop in one day at or above this = potential theft
+        var LEAK_L = 2; // smaller unexplained drop = potential leak
+        var RED = "#fb7185", AMBER = "#f59e0b";
+        function hm(d) {
+          return label(d) + " " + d.getFullYear() + ", " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+        }
+        var abn = [];
+        alarms.forEach(function (a) {
+          if (a.end) return;
+          var hrs = (NOW - a.start) / 3600e3;
+          abn.push({ c: AMBER, type: "Alarm Not Cleared", msg: "Genset running alarm still active for " + hrs.toFixed(1) + " Hr", time: "Since " + hm(a.start) });
+        });
+        usage.forEach(function (l, i) {
+          var ran = alarms.reduce(function (h, a) {
+            var d = dateAt(i, usage.length);
+            return a.end && a.start.toDateString() === d.toDateString() ? h + (a.end - a.start) / 3600e3 : h;
+          }, 0);
+          var lost = l - ran * RATE;
+          if (lost < LEAK_L) return;
+          var theft = lost >= THEFT_L;
+          abn.push({
+            c: theft ? RED : AMBER,
+            type: theft ? "Potential Theft" : "Potential Leak",
+            msg: f1(lost) + " L dropped " + (ran ? "beyond what " + f1(ran) + " Hr of running explains" : "with no genset running"),
+            time: label(dateAt(i, usage.length)) + " 2026",
+            day: i,
+          });
+        });
+        abn.sort(function (x, y) { return (x.c === RED ? 0 : 1) - (y.c === RED ? 0 : 1); });
+
+        var abnCount = document.getElementById("abn-count");
+        abnCount.textContent = abn.length ? abn.length + " found" : "None";
+        abnCount.style.cssText += abn.length ? ";color:#fb7185;background:#1c1013;border:1px solid #3a1c22" : ";color:#34d399;background:#0f1d18;border:1px solid #1c3a2e";
+        document.getElementById("abn-list").innerHTML = abn.length ? abn.map(function (x) {
+          return '<div class="abn" style="--c:' + x.c + '"><div>' +
+            '<div class="abn-type">' + x.type + '</div>' +
+            '<div class="abn-msg">' + x.msg + '</div>' +
+            '<div class="abn-time">' + x.time + '</div></div></div>';
+        }).join("") : '<div style="font-size: 13px; color: #8b8ba3">No leak, theft or uncleared alarm detected.</div>';
+
+        var logFrom = document.getElementById("log-from");
+        var logPreset = document.getElementById("log-from-preset");
+        logFrom.value = logPreset.value;
+        // a preset fills the date; picking a date by hand switches the preset to Custom
+        logPreset.addEventListener("change", function () {
+          if (logPreset.value) logFrom.value = logPreset.value;
+          renderLog();
+        });
+        logFrom.addEventListener("input", function () {
+          var match = [].some.call(logPreset.options, function (o) { return o.value && o.value === logFrom.value; });
+          logPreset.value = match ? logFrom.value : "";
+        });
+        var logTo = document.getElementById("log-to");
+        var logStatus = document.getElementById("log-status");
+        var logBody = document.getElementById("log-body");
+        var logSummary = document.getElementById("log-summary");
+
+        function iso(d) {
+          return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+        }
+        function stamp(d) {
+          return label(d) + " " + d.getFullYear() + ", " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+        }
+        logTo.value = iso(NOW);
+        logTo.max = logFrom.max = iso(NOW);
+
+        function renderLog() {
+          var from = logFrom.value, to = logTo.value, st = logStatus.value;
+          logTo.min = from;
+          var rows = alarms.filter(function (a) {
+            var day = iso(a.start);
+            if (from && day < from) return false;
+            if (to && day > to) return false;
+            if (st === "running" && a.end) return false;
+            if (st === "cleared" && !a.end) return false;
+            return true;
+          });
+          var total = 0;
+          logBody.innerHTML = rows.length ? rows.map(function (a) {
+            var hrs = ((a.end || NOW) - a.start) / 3600e3;
+            total += hrs;
+            var tag = a.end
+              ? '<span style="color: #8b8ba3; background: #1c1c2a; border-radius: 999px; padding: 3px 10px; font-size: 11.5px; font-weight: 600">Cleared</span>'
+              : '<span style="color: #f59e0b; background: #2a1f0a; border-radius: 999px; padding: 3px 10px; font-size: 11.5px; font-weight: 600">Running</span>';
+            var mono = 'font-family: &quot;IBM Plex Mono&quot;, monospace; white-space: nowrap';
+            return '<tr><td style="' + mono + '">' + stamp(a.start) + '</td>' +
+              '<td style="' + mono + '">' + (a.end ? stamp(a.end) : "&mdash;") + '</td>' +
+              '<td style="text-align: right; ' + mono + '">' + hrs.toFixed(2) + '</td>' +
+              '<td style="text-align: right">' + tag + '</td></tr>';
+          }).join("") : '<tr><td colspan="4" style="text-align: center; color: #8b8ba3; padding: 24px 0">No alarms match this query</td></tr>';
+          logSummary.textContent = rows.length + " alarm" + (rows.length === 1 ? "" : "s") + " \u00b7 " + total.toFixed(2) + " Hr total";
+        }
+        [logFrom, logTo, logStatus].forEach(function (c) { c.addEventListener("change", renderLog); });
+        renderLog();
       })();
     </script>
   </body>
